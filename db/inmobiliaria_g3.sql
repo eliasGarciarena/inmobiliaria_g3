@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-06-2022 a las 02:22:59
+-- Tiempo de generación: 04-07-2022 a las 01:10:56
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -50,12 +50,14 @@ CREATE TABLE `inmueble` (
 
 CREATE TABLE `inquilino` (
   `id_inquilino` int(11) NOT NULL,
-  `Nombre` varchar(100) NOT NULL,
+  `nombre` varchar(100) NOT NULL,
   `apellido` varchar(100) NOT NULL,
   `dni` bigint(20) NOT NULL,
   `detalle` varchar(300) NOT NULL,
   `id_inmueble` int(11) NOT NULL,
-  `tipo_inm` varchar(200) NOT NULL
+  `tipo_inm` varchar(200) NOT NULL,
+  `telefono` bigint(20) NOT NULL,
+  `activo` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -71,7 +73,7 @@ CREATE TABLE `propietario` (
   `dni` bigint(20) NOT NULL,
   `domicilio` varchar(400) NOT NULL,
   `telefono` bigint(20) NOT NULL,
-  `propiedades` int(11) NOT NULL
+  `activo` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -97,8 +99,7 @@ ALTER TABLE `inquilino`
 -- Indices de la tabla `propietario`
 --
 ALTER TABLE `propietario`
-  ADD PRIMARY KEY (`id_propietario`),
-  ADD KEY `propiedades` (`propiedades`);
+  ADD PRIMARY KEY (`id_propietario`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
