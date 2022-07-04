@@ -23,6 +23,27 @@ public class Inmueble {
     private char tipoLocal;
     private String zona;
 
+    public Inmueble() {
+    }
+
+    public Inmueble(int id, String accesibilidad, String caracteristicas, String direccion, Propietario propietario, char estadoLocal, String forma, Inquilino inquilino, float precioTrazado, Persona inspector, int superficieMin, char tipoLocal, String zona) {
+        this.id = id;
+        this.accesibilidad = accesibilidad;
+        this.caracteristicas = caracteristicas;
+        this.direccion = direccion;
+        this.propietario = propietario;
+        this.estadoLocal = estadoLocal;
+        this.forma = forma;
+        this.inquilino = inquilino;
+        this.precioTrazado = precioTrazado;
+        this.inspector = inspector;
+        this.superficieMin = superficieMin;
+        this.tipoLocal = tipoLocal;
+        this.zona = zona;
+    }
+    
+    
+
     public int getId() {
         return id;
     }

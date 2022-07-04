@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -26,7 +27,7 @@ public class InmuebleData {
     }
 
     public boolean AgregarInmueble(Inmueble inmueble) {
-        String querySql = "INSERT INTO alumno (id_inquilino,id_propietario,direccion,zona,estado_inmueble,tipo_inmueble,precio,caracteristicas,superficiemin,forma,accesibilidad)  VALUES (?, ?,?,?,?,?,?,?,?,?,? )";
+        String querySql = "INSERT INTO inmueble (id_inquilino,id_propietario,direccion,zona,estado_inmueble,tipo_inmueble,precio,caracteristicas,superficiemin,forma,accesibilidad)  VALUES (?, ?,?,?,?,?,?,?,?,?,? )";
 
         boolean insert = true;
         try {
@@ -62,5 +63,27 @@ public class InmuebleData {
             }
         }
         return insert;
+    }
+
+    public ArrayList<Inmueble> ObtenerInmuebles() {
+        ArrayList<Inmueble> inmuebleList = new ArrayList<>();
+
+        try {
+            String sql = "SELECT * FROM inmueble";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet resultSet = ps.executeQuery();
+
+            Inmueble inmueble;
+            while (resultSet.next()) {
+                inmueble = new Inmueble();                
+                inmueble.setId(resultSet.getInt("id_inmueble"));                
+                inmuebleList.add(inmueble);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al obtener los inmuebles");
+        }
+
+        return inmuebleList;
     }
 }
