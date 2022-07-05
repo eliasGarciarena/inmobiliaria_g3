@@ -113,7 +113,7 @@ public class PropietarioData {
             }
             ps.close();
         }catch(Exception ex){
-            JOptionPane.showMessageDialog(null,"Error al obtener propietario por id "+ex);
+            JOptionPane.showMessageDialog(null,"Error al obtener propietario por dni: "+ex);
         }
         return prop;
     }
@@ -151,6 +151,7 @@ public class PropietarioData {
                 borrado=true;
                 JOptionPane.showMessageDialog(null, "Se ha borrado el propietario con exito");
             }
+            ps.close();
         }catch(Exception ex){
             JOptionPane.showMessageDialog(null,"Error al borrar propietario "+ ex);
         }

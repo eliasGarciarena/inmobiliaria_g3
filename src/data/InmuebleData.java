@@ -27,7 +27,7 @@ public class InmuebleData {
     }
 
     public boolean AgregarInmueble(Inmueble inmueble) {
-        String querySql = "INSERT INTO inmueble (id_inquilino,id_propietario,direccion,zona,estado_inmueble,tipo_inmueble,precio,caracteristicas,superficiemin,forma,accesibilidad)  VALUES (?, ?,?,?,?,?,?,?,?,?,? )";
+        String querySql = "INSERT INTO inmueble (id_inquilino,id_propietario,direccion,zona,estado_inmueble,tipo_inmueble,precio,caracteristicas,superficiemin,forma,activo)  VALUES (?, ?,?,?,?,?,?,?,?,?,? )";
 
         boolean insert = true;
         try {
@@ -42,7 +42,7 @@ public class InmuebleData {
             ps.setString(8, inmueble.getCaracteristicas());
             ps.setLong(9, inmueble.getSuperficieMin());
             ps.setString(10, inmueble.getForma());
-            ps.setString(10, inmueble.getAccesibilidad());
+            ps.setBoolean(10, inmueble.isActivo());
 
             ps.executeUpdate();
 
@@ -69,7 +69,7 @@ public class InmuebleData {
         ArrayList<Inmueble> inmuebleList = new ArrayList<>();
 
         try {
-            String sql = "SELECT * FROM inmueble";
+            String sql = "SELECT * FROM inmueble WHERE activo=1";
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet resultSet = ps.executeQuery();
 

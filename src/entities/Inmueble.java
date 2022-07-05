@@ -10,7 +10,7 @@ package entities;
 public class Inmueble {
 
     private int id;
-    private String accesibilidad;
+    private boolean activo;//
     private String caracteristicas;
     private String direccion;
     private Propietario propietario;
@@ -26,9 +26,9 @@ public class Inmueble {
     public Inmueble() {
     }
 
-    public Inmueble(int id, String accesibilidad, String caracteristicas, String direccion, Propietario propietario, char estadoLocal, String forma, Inquilino inquilino, float precioTrazado, Persona inspector, int superficieMin, char tipoLocal, String zona) {
+    public Inmueble(int id, boolean activo, String caracteristicas, String direccion, Propietario propietario, char estadoLocal, String forma, Inquilino inquilino, float precioTrazado, Persona inspector, int superficieMin, char tipoLocal, String zona) {
         this.id = id;
-        this.accesibilidad = accesibilidad;
+        this.activo = activo;
         this.caracteristicas = caracteristicas;
         this.direccion = direccion;
         this.propietario = propietario;
@@ -48,8 +48,8 @@ public class Inmueble {
         return id;
     }
 
-    public String getAccesibilidad() {
-        return accesibilidad;
+    public boolean isActivo() {
+        return activo;
     }
 
     public String getCaracteristicas() {
@@ -100,8 +100,8 @@ public class Inmueble {
         this.id = id;
     }
 
-    public void setAccesibilidad(String accesibilidad) {
-        this.accesibilidad = accesibilidad;
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
 
     public void setCaracteristicas(String caracteristicas) {

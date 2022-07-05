@@ -12,16 +12,15 @@ import java.util.ArrayList;
 public class Inquilino extends Persona {
 
     private char detalle;
-    private char tipo;
-    public ArrayList<Inmueble> propiedades;
+    private String tipo;
 
-    public Inquilino(int id, String nombre, String apellido, long dni, long telefono, char detalle, char tipo, boolean activo) {
+    public Inquilino(int id, String nombre, String apellido, long dni, long telefono, char detalle, String tipo, boolean activo) {
         super(id, nombre, apellido, dni, telefono, activo);
         this.detalle = detalle;
         this.tipo = tipo;
     }
 
-    public Inquilino(String nombre, String apellido, long dni, long telefono, char detalle, char tipo, boolean activo) {
+    public Inquilino(String nombre, String apellido, long dni, long telefono, char detalle, String tipo, boolean activo) {
         super(nombre, apellido, dni, telefono, activo);
         this.detalle = detalle;
         this.tipo = tipo;
@@ -34,23 +33,17 @@ public class Inquilino extends Persona {
         return detalle;
     }
 
-    public char getTipo() {
+    public String getTipo() {
         return tipo;
     }
 
-    public ArrayList<Inmueble> getPropiedades() {
-        return propiedades;
-    }
 
     public void setDetalle(char detalle) {
         this.detalle = detalle;
     }
 
-    public void setTipo(char tipo) {
+    public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 
-    public void setPropiedades(ArrayList<Inmueble> propiedades) {
-        this.propiedades = propiedades;
-    }
 }
