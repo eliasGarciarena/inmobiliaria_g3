@@ -42,5 +42,5 @@ public class Propietario extends Persona {
     public void setLocalesPropios(ArrayList<Inmueble> localesPropios) {
         this.localesPropios = localesPropios;
     }
-    
+
 }
