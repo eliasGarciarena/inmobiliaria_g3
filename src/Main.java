@@ -28,7 +28,7 @@ public class Main {
         //inquid.agregarInquilino(inquilino);
         
         //inquid.modificarInquilino(inquilino);
-        System.out.println(inquid.obtenerInquilinoXId(3)+"         "+inquid.obtenerInquilinoXDni(45673007l));
+        //System.out.println(inquid.obtenerInquilinoXId(3)+"         "+inquid.obtenerInquilinoXDni(45673007l));
        // ArrayList<Inquilino> inquis=inquid.obtenerInquilinos();
         //for(Inquilino in:inquis){
         //   System.out.println(in);
