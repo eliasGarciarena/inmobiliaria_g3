@@ -26,15 +26,17 @@ public class InquilinoData {
     public boolean agregarInquilino(Inquilino inqui){
         boolean agregar=false;
         try{
-            String sql="INSERT INTO inquilino(nombre, apellido, dni, detalle, tipo_inm, telefono, activo) VALUES (?,?,?,?,?,?,?)";
+            String sql="INSERT INTO inquilino(nombre, apellido, dni, cuit, telefono, nombre_Garante, apellido_garante, dni_garante, activo) VALUES (?,?,?,?,?,?,?,?,?)";
             PreparedStatement ps=con.prepareStatement(sql,RETURN_GENERATED_KEYS);
             ps.setString(1,inqui.getNombre());
             ps.setString(2,inqui.getApellido());
             ps.setLong(3,inqui.getDni());
-            ps.setString(4,String.valueOf(inqui.getDetalle()));
-            ps.setString(5,inqui.getTipo());
-            ps.setLong(6,inqui.getTelefono());
-            ps.setBoolean(7,inqui.isActivo());
+            ps.setLong(4,inqui.getCuit());
+            ps.setLong(5,inqui.getTelefono());
+            ps.setString(6,inqui.getNombreGarante());
+            ps.setString(7,inqui.getApellidoGarante());
+            ps.setLong(8,inqui.getDniGarante());
+            ps.setBoolean(9,inqui.isActivo());
             ps.executeUpdate();
             ResultSet result=ps.getGeneratedKeys();
             if(result.next()){
@@ -61,8 +63,10 @@ public class InquilinoData {
                 inqui.setNombre(result.getString("nombre"));
                 inqui.setApellido(result.getString("apellido"));
                 inqui.setDni(result.getLong("dni"));
-                inqui.setDetalle(result.getString("detalle").charAt(0));
-                inqui.setTipo(result.getString("tipo_inm"));
+                inqui.setCuit(result.getLong("cuit"));
+                inqui.setNombreGarante(result.getString("nombre_garante"));
+                inqui.setApellidoGarante(result.getString("apellido_garante"));
+                inqui.setDniGarante(result.getLong("dni_garante"));
                 inqui.setTelefono(result.getLong("telefono"));
                 inqui.setActivo(result.getBoolean("activo"));
                 inquilinos.add(inqui);
@@ -86,8 +90,10 @@ public class InquilinoData {
                 inqui.setNombre(result.getString("nombre"));
                 inqui.setApellido(result.getString("apellido"));
                 inqui.setDni(result.getLong("dni"));
-                inqui.setDetalle(result.getString("detalle").charAt(0));
-                inqui.setTipo(result.getString("tipo_inm"));
+                inqui.setCuit(result.getLong("cuit"));
+                inqui.setNombreGarante(result.getString("nombre_garante"));
+                inqui.setApellidoGarante(result.getString("apellido_garante"));
+                inqui.setDniGarante(result.getLong("dni_garante"));
                 inqui.setTelefono(result.getLong("telefono"));
                 inqui.setActivo(result.getBoolean("activo"));
             }
@@ -110,8 +116,10 @@ public class InquilinoData {
                 inqui.setNombre(result.getString("nombre"));
                 inqui.setApellido(result.getString("apellido"));
                 inqui.setDni(result.getLong("dni"));
-                inqui.setDetalle(result.getString("detalle").charAt(0));
-                inqui.setTipo(result.getString("tipo_inm"));
+                inqui.setCuit(result.getLong("cuit"));
+                inqui.setNombreGarante(result.getString("nombre_garante"));
+                inqui.setApellidoGarante(result.getString("apellido_garante"));
+                inqui.setDniGarante(result.getLong("dni_garante"));
                 inqui.setTelefono(result.getLong("telefono"));
                 inqui.setActivo(result.getBoolean("activo"));
             }
@@ -124,16 +132,18 @@ public class InquilinoData {
     public boolean modificarInquilino(Inquilino inqui){
         boolean modi=false;
         try{
-            String sql="UPDATE inquilino SET nombre=?, apellido=?,dni=?,detalle=?,tipo_inm=?,telefono=?,activo=? WHERE id_inquilino=?";
+            String sql="UPDATE inquilino SET nombre=?, apellido=?,dni=?,cuit=?,telefono=?,nombre_garante=?,apellido_garante=?,dni_garante=?,activo=? WHERE id_inquilino=?";
             PreparedStatement ps=con.prepareStatement(sql);
             ps.setString(1, inqui.getNombre());
             ps.setString(2, inqui.getApellido());
             ps.setLong(3, inqui.getDni());
-            ps.setString(4, String.valueOf(inqui.getDetalle()));
-            ps.setString(5, inqui.getTipo());
-            ps.setLong(6, inqui.getTelefono());
-            ps.setBoolean(7, inqui.isActivo());
-            ps.setInt(8, inqui.getId());
+            ps.setLong(4, inqui.getCuit());
+            ps.setLong(5, inqui.getTelefono());
+            ps.setString(6, inqui.getNombreGarante());
+            ps.setString(7, inqui.getApellidoGarante());
+            ps.setLong(8, inqui.getDniGarante());
+            ps.setBoolean(9, inqui.isActivo());
+            ps.setInt(10, inqui.getId());
             int result=ps.executeUpdate();
             if(result!=0){
                 modi=true;

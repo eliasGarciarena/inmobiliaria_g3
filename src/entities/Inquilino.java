@@ -11,39 +11,62 @@ import java.util.ArrayList;
  */
 public class Inquilino extends Persona {
 
-    private char detalle;
-    private String tipo;
+    private long cuit;
+    private String nombreGarante;
+    private String apellidoGarante;
+    private long  dniGarante;
 
-    public Inquilino(int id, String nombre, String apellido, long dni, long telefono, char detalle, String tipo, boolean activo) {
+    public Inquilino(int id, String nombre, String apellido, long dni,long cuit, long telefono, boolean activo, String nombreGarante, String apellidoGarante, long dniGarante) {
         super(id, nombre, apellido, dni, telefono, activo);
-        this.detalle = detalle;
-        this.tipo = tipo;
+        this.nombreGarante = nombreGarante;
+        this.apellidoGarante = apellidoGarante;
+        this.dniGarante = dniGarante;
+        this.cuit=cuit;
+    }
+        public Inquilino(String nombre, String apellido, long dni,long cuit, long telefono, boolean activo,String nombreGarante, String apellidoGarante, long dniGarante) {
+        super(nombre, apellido, dni, telefono, activo);
+        this.nombreGarante = nombreGarante;
+        this.apellidoGarante = apellidoGarante;
+        this.dniGarante = dniGarante;
+        this.cuit=cuit;
     }
 
-    public Inquilino(String nombre, String apellido, long dni, long telefono, char detalle, String tipo, boolean activo) {
-        super(nombre, apellido, dni, telefono, activo);
-        this.detalle = detalle;
-        this.tipo = tipo;
-    }
 
     public Inquilino() {
     }
 
-    public char getDetalle() {
-        return detalle;
+
+    public String getNombreGarante() {
+        return nombreGarante;
     }
 
-    public String getTipo() {
-        return tipo;
+    public void setNombreGarante(String nombreGarante) {
+        this.nombreGarante = nombreGarante;
     }
 
-
-    public void setDetalle(char detalle) {
-        this.detalle = detalle;
+    public String getApellidoGarante() {
+        return apellidoGarante;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setApellidoGarante(String apellidoGarante) {
+        this.apellidoGarante = apellidoGarante;
     }
 
+    public long getDniGarante() {
+        return dniGarante;
+    }
+
+    public void setDniGarante(long dniGarante) {
+        this.dniGarante = dniGarante;
+    }
+
+    public long getCuit() {
+        return cuit;
+    }
+
+    public void setCuit(long cuit) {
+        this.cuit = cuit;
+    }
+    
+    
 }

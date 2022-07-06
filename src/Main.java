@@ -22,13 +22,16 @@ public class Main {
         Conexion intento = new Conexion();
         PropietarioData pd=new PropietarioData(intento);
         InquilinoData inquid=new InquilinoData(intento);
-        char detalle='z';
         //inquid.borrarInquilino(1);
-        //Inquilino inquilino=new Inquilino(2,"Gabriel","Cafon",5524122,26657738,detalle,"Departamento",true);
+        Inquilino inquilino=new Inquilino(3,"Juanes","Merluza",45673007l,204456730071l,2665227378l,true,"Jose","Lombardo",20000011);
+        
+        //inquid.agregarInquilino(inquilino);
+        
         //inquid.modificarInquilino(inquilino);
+        System.out.println(inquid.obtenerInquilinoXId(3)+"         "+inquid.obtenerInquilinoXDni(45673007l));
        // ArrayList<Inquilino> inquis=inquid.obtenerInquilinos();
         //for(Inquilino in:inquis){
-         //   System.out.println(in);
+        //   System.out.println(in);
         //}
        // Inquilino inq=inquid.obtenerInquilinoXDni(4412312);
         //Inquilino inq2=inquid.obtenerInquilinoXId(1);

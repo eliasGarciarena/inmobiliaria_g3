@@ -32,7 +32,7 @@ public class InmuebleData {
         boolean insert = true;
         try {
             PreparedStatement ps = conn.prepareStatement(querySql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, inmueble.getInquilino().getId());
+           /* ps.setInt(1, inmueble.getInquilino().getId());
             ps.setInt(2, inmueble.getPropietario().getId());
             ps.setString(3, inmueble.getDireccion());
             ps.setString(4, inmueble.getZona());
@@ -43,7 +43,7 @@ public class InmuebleData {
             ps.setLong(9, inmueble.getSuperficieMin());
             ps.setString(10, inmueble.getForma());
             ps.setBoolean(10, inmueble.isActivo());
-
+               */
             ps.executeUpdate();
 
             //Obtenemos el id asignado por la base de datos

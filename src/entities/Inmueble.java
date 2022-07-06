@@ -10,142 +10,111 @@ package entities;
 public class Inmueble {
 
     private int id;
-    private boolean activo;//
-    private String caracteristicas;
-    private String direccion;
     private Propietario propietario;
-    private char estadoLocal;
-    private String forma;
-    private Inquilino inquilino;
-    private float precioTrazado;
-    private Persona inspector;
-    private int superficieMin;
-    private char tipoLocal;
+    private String direccion;
     private String zona;
+    private String tipoInmueble;
+    private String estadoInmueble;
+    private double precio;
+    private double superficie;
+    private boolean activo;
 
     public Inmueble() {
     }
 
-    public Inmueble(int id, boolean activo, String caracteristicas, String direccion, Propietario propietario, char estadoLocal, String forma, Inquilino inquilino, float precioTrazado, Persona inspector, int superficieMin, char tipoLocal, String zona) {
+    public Inmueble(int id, Propietario propietario, String direccion, String zona, String tipoInmueble, String estadoInmueble, double precio, double superficie, boolean activo) {
         this.id = id;
-        this.activo = activo;
-        this.caracteristicas = caracteristicas;
-        this.direccion = direccion;
         this.propietario = propietario;
-        this.estadoLocal = estadoLocal;
-        this.forma = forma;
-        this.inquilino = inquilino;
-        this.precioTrazado = precioTrazado;
-        this.inspector = inspector;
-        this.superficieMin = superficieMin;
-        this.tipoLocal = tipoLocal;
+        this.direccion = direccion;
         this.zona = zona;
+        this.tipoInmueble = tipoInmueble;
+        this.estadoInmueble = estadoInmueble;
+        this.precio = precio;
+        this.superficie = superficie;
+        this.activo = activo;
     }
-    
-    
+
+    public Inmueble(Propietario propietario, String direccion, String zona, String tipoInmueble, String estadoInmueble, double precio, double superficie, boolean activo) {
+        this.propietario = propietario;
+        this.direccion = direccion;
+        this.zona = zona;
+        this.tipoInmueble = tipoInmueble;
+        this.estadoInmueble = estadoInmueble;
+        this.precio = precio;
+        this.superficie = superficie;
+        this.activo = activo;
+    }
 
     public int getId() {
         return id;
-    }
-
-    public boolean isActivo() {
-        return activo;
-    }
-
-    public String getCaracteristicas() {
-        return caracteristicas;
-    }
-
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public Propietario getPropietario() {
-        return propietario;
-    }
-
-    public char getEstadoLocal() {
-        return estadoLocal;
-    }
-
-    public String getForma() {
-        return forma;
-    }
-
-    public Inquilino getInquilino() {
-        return inquilino;
-    }
-
-    public float getPrecioTrazado() {
-        return precioTrazado;
-    }
-
-    public Persona getInspector() {
-        return inspector;
-    }
-
-    public int getSuperficieMin() {
-        return superficieMin;
-    }
-
-    public char getTipoLocal() {
-        return tipoLocal;
-    }
-
-    public String getZona() {
-        return zona;
     }
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public void setActivo(boolean activo) {
-        this.activo = activo;
-    }
-
-    public void setCaracteristicas(String caracteristicas) {
-        this.caracteristicas = caracteristicas;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public Propietario getPropietario() {
+        return propietario;
     }
 
     public void setPropietario(Propietario propietario) {
         this.propietario = propietario;
     }
 
-    public void setEstadoLocal(char estadoLocal) {
-        this.estadoLocal = estadoLocal;
+    public String getDireccion() {
+        return direccion;
     }
 
-    public void setForma(String forma) {
-        this.forma = forma;
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 
-    public void setInquilino(Inquilino inquilino) {
-        this.inquilino = inquilino;
-    }
-
-    public void setPrecioTrazado(float precioTrazado) {
-        this.precioTrazado = precioTrazado;
-    }
-
-    public void setInspector(Persona inspector) {
-        this.inspector = inspector;
-    }
-
-    public void setSuperficieMin(int superficieMin) {
-        this.superficieMin = superficieMin;
-    }
-
-    public void setTipoLocal(char tipoLocal) {
-        this.tipoLocal = tipoLocal;
+    public String getZona() {
+        return zona;
     }
 
     public void setZona(String zona) {
         this.zona = zona;
+    }
+
+    public String getTipoInmueble() {
+        return tipoInmueble;
+    }
+
+    public void setTipoInmueble(String tipoInmueble) {
+        this.tipoInmueble = tipoInmueble;
+    }
+
+    public String getEstadoInmueble() {
+        return estadoInmueble;
+    }
+
+    public void setEstadoInmueble(String estadoInmueble) {
+        this.estadoInmueble = estadoInmueble;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
+    public double getSuperficie() {
+        return superficie;
+    }
+
+    public void setSuperficie(double superficie) {
+        this.superficie = superficie;
+    }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
     
     @Override
