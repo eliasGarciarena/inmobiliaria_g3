@@ -42,6 +42,9 @@ public class Contrato_inmueble {
         this.activo = activo;
     }
 
+    public Contrato_inmueble() {
+    }
+    
     public int getId() {
         return id;
     }
