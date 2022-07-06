@@ -16,7 +16,7 @@ public class Conexion {
     private final String url = "localhost";
     private final String nombreDB = "inmobiliaria_g3";
     private final String usuario = "root";
-    private final String password = "";
+    private final String password = "universidadg3TUD$";
     private Connection establecer = null;
 
     public Conexion() {

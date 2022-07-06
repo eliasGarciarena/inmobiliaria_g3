@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-07-2022 a las 01:10:56
+-- Tiempo de generación: 07-07-2022 a las 01:14:18
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -24,22 +24,36 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `contrato_inmueble`
+--
+
+CREATE TABLE `contrato_inmueble` (
+  `id_contrato` int(11) NOT NULL,
+  `id_inquilino` int(11) NOT NULL,
+  `id_inmueble` int(11) NOT NULL,
+  `fecha_inicio` date NOT NULL,
+  `fecha_final` date NOT NULL,
+  `marca` varchar(200) NOT NULL,
+  `observaciones` varchar(300) NOT NULL,
+  `activo` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `inmueble`
 --
 
 CREATE TABLE `inmueble` (
   `id_inmueble` int(11) NOT NULL,
-  `id_inquilino` int(11) NOT NULL,
   `id_propietario` int(11) NOT NULL,
   `direccion` varchar(600) NOT NULL,
   `zona` varchar(400) NOT NULL,
   `estado_inmueble` varchar(200) NOT NULL,
   `tipo_inmueble` varchar(200) NOT NULL,
   `precio` double NOT NULL,
-  `caracteristicas` varchar(500) NOT NULL,
-  `superficiemin` bigint(20) NOT NULL,
-  `forma` varchar(100) NOT NULL,
-  `accesibilidad` tinyint(1) NOT NULL
+  `superficie` double NOT NULL,
+  `activo` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -53,10 +67,11 @@ CREATE TABLE `inquilino` (
   `nombre` varchar(100) NOT NULL,
   `apellido` varchar(100) NOT NULL,
   `dni` bigint(20) NOT NULL,
-  `detalle` varchar(300) NOT NULL,
-  `id_inmueble` int(11) NOT NULL,
-  `tipo_inm` varchar(200) NOT NULL,
+  `cuit` bigint(20) NOT NULL,
   `telefono` bigint(20) NOT NULL,
+  `nombre_Garante` varchar(200) NOT NULL,
+  `apellido_garante` varchar(200) NOT NULL,
+  `dni_garante` bigint(20) NOT NULL,
   `activo` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -81,11 +96,18 @@ CREATE TABLE `propietario` (
 --
 
 --
+-- Indices de la tabla `contrato_inmueble`
+--
+ALTER TABLE `contrato_inmueble`
+  ADD PRIMARY KEY (`id_contrato`),
+  ADD KEY `id_inquilino` (`id_inquilino`),
+  ADD KEY `id_propìedad` (`id_inmueble`);
+
+--
 -- Indices de la tabla `inmueble`
 --
 ALTER TABLE `inmueble`
   ADD PRIMARY KEY (`id_inmueble`),
-  ADD KEY `id_inquilino` (`id_inquilino`),
   ADD KEY `id_propietario` (`id_propietario`);
 
 --
@@ -93,17 +115,24 @@ ALTER TABLE `inmueble`
 --
 ALTER TABLE `inquilino`
   ADD PRIMARY KEY (`id_inquilino`),
-  ADD KEY `id_inmueble` (`id_inmueble`);
+  ADD UNIQUE KEY `dni` (`dni`);
 
 --
 -- Indices de la tabla `propietario`
 --
 ALTER TABLE `propietario`
-  ADD PRIMARY KEY (`id_propietario`);
+  ADD PRIMARY KEY (`id_propietario`),
+  ADD UNIQUE KEY `dni` (`dni`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `contrato_inmueble`
+--
+ALTER TABLE `contrato_inmueble`
+  MODIFY `id_contrato` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `inmueble`
@@ -115,17 +144,24 @@ ALTER TABLE `inmueble`
 -- AUTO_INCREMENT de la tabla `inquilino`
 --
 ALTER TABLE `inquilino`
-  MODIFY `id_inquilino` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_inquilino` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `propietario`
 --
 ALTER TABLE `propietario`
-  MODIFY `id_propietario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_propietario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `contrato_inmueble`
+--
+ALTER TABLE `contrato_inmueble`
+  ADD CONSTRAINT `contrato_inmueble_ibfk_1` FOREIGN KEY (`id_inquilino`) REFERENCES `inquilino` (`id_inquilino`),
+  ADD CONSTRAINT `contrato_inmueble_ibfk_2` FOREIGN KEY (`id_inmueble`) REFERENCES `inmueble` (`id_inmueble`);
 
 --
 -- Filtros para la tabla `inmueble`

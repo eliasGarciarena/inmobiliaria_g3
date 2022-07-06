@@ -10,7 +10,6 @@ import java.sql.ResultSet;
 import static java.sql.Statement.RETURN_GENERATED_KEYS;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import org.mariadb.jdbc.internal.util.dao.PrepareResult;
 
 /**
  *
