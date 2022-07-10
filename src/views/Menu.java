@@ -33,19 +33,24 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        escritorio = new javax.swing.JDesktopPane();
+        //escritorio = new javax.swing.JDesktopPane();
+        escritorio = new JDesktopPanePersonalizado();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         mitProp = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        mitSalir = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Gestion de Inmobiliaria");
+        setMinimumSize(new java.awt.Dimension(800, 600));
 
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 417, Short.MAX_VALUE)
+            .addGap(0, 455, Short.MAX_VALUE)
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -57,7 +62,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenu2.setText("Propietario");
 
-        mitProp.setText("formulario Propietario");
+        mitProp.setText("Formulario Propietario");
         mitProp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mitPropActionPerformed(evt);
@@ -66,6 +71,13 @@ public class Menu extends javax.swing.JFrame {
         jMenu2.add(mitProp);
 
         jMenuBar1.add(jMenu2);
+
+        jMenu3.setText("Salir");
+
+        mitSalir.setText("Salir");
+        jMenu3.add(mitSalir);
+
+        jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
 
@@ -130,11 +142,13 @@ public class Menu extends javax.swing.JFrame {
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane escritorio;
+    private JDesktopPanePersonalizado escritorio;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem mitProp;
+    private javax.swing.JMenuItem mitSalir;
     // End of variables declaration//GEN-END:variables
 
  
