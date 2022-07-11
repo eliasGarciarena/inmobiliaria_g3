@@ -14,7 +14,7 @@ public class JDesktopPanePersonalizado extends JDesktopPane {
     
     public JDesktopPanePersonalizado(){
         try {
-            img=ImageIO.read(getClass().getResourceAsStream("../resources/imgs/inmobiliaria.jpg"));
+            img=ImageIO.read(getClass().getResourceAsStream("/imgs/inmobiliaria.jpg"));
         } catch (Exception e) {
             e.printStackTrace();
         }
