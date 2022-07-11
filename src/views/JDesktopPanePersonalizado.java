@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package views;
 
 import java.awt.Graphics;
@@ -25,12 +21,9 @@ public class JDesktopPanePersonalizado extends JDesktopPane {
     }
 
     @Override
-    protected void paintComponent(Graphics g) {
-        int centradoHorizontal = 50;
-        int centradoVertical = 50;
-        super.paintComponent(g); 
-        // mustra la imagen en el jdesktopPane
-        g.drawImage(img, centradoHorizontal, centradoVertical, this);
+    protected void paintComponent(Graphics g)
+    {
+        g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
     }
     
     

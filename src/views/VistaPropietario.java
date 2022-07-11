@@ -72,10 +72,13 @@ public class VistaPropietario extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setTitle("Propietario");
-        setToolTipText("");
+        setToolTipText(null);
         setMinimumSize(new java.awt.Dimension(513, 417));
         setName(""); // NOI18N
         setVisible(true);
+
+        jPanel1.setToolTipText(null);
+        jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabel1.setText("Propietario");
 
@@ -132,6 +135,8 @@ public class VistaPropietario extends javax.swing.JInternalFrame {
         });
 
         lblId.setText("Nº Registro");
+
+        txfId.setToolTipText(null);
 
         jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
