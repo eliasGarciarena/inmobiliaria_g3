@@ -31,14 +31,19 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuItem2 = new javax.swing.JMenuItem();
         escritorio = new JDesktopPanePersonalizado();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         mitProp = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        jmnIFormInquilino = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         mitSalir = new javax.swing.JMenuItem();
+
+        jMenuItem2.setText("jMenuItem2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gestion de Inmobiliaria");
@@ -79,6 +84,18 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
+        jMenu4.setText("Inquilino");
+
+        jmnIFormInquilino.setText("Formulario Inquilino");
+        jmnIFormInquilino.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmnIFormInquilinoActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jmnIFormInquilino);
+
+        jMenuBar1.add(jMenu4);
+
         jMenu3.setText("Salir");
 
         mitSalir.setText("Salir");
@@ -115,6 +132,16 @@ public class Menu extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jmnIFormInquilinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmnIFormInquilinoActionPerformed
+        // TODO add your handling code here:
+        escritorio.removeAll();
+        vistaInquilino inquivista=new vistaInquilino(con);
+        inquivista.setVisible(true);
+        escritorio.add(inquivista);
+        escritorio.repaint();
+        escritorio.moveToFront(inquivista);
+    }//GEN-LAST:event_jmnIFormInquilinoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -157,8 +184,11 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jmnIFormInquilino;
     private javax.swing.JMenuItem mitProp;
     private javax.swing.JMenuItem mitSalir;
     // End of variables declaration//GEN-END:variables
