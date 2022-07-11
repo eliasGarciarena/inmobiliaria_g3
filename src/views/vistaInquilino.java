@@ -24,6 +24,8 @@ public class vistaInquilino extends javax.swing.JInternalFrame {
         initComponents();
         inquilino=new Inquilino();
         inquidata=new InquilinoData(con);
+        btnBorrar.setEnabled(false);
+        btnActualizar.setEnabled(false);
     }
 
     /**
@@ -303,6 +305,9 @@ public class vistaInquilino extends javax.swing.JInternalFrame {
         }catch(Exception ex){
             JOptionPane.showMessageDialog(this,"Error al obtener los datos del inquilino:" +ex);
         }
+        btnGuardar.setEnabled(false);
+        btnActualizar.setEnabled(true);
+        btnBorrar.setEnabled(true);
     }//GEN-LAST:event_btnBuscarIdActionPerformed
 
     private void btnBuscarDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarDniActionPerformed
@@ -325,6 +330,9 @@ public class vistaInquilino extends javax.swing.JInternalFrame {
         }catch(Exception ex){
             JOptionPane.showMessageDialog(this,"Error al obtener los datos del inquilino (por dni):" +ex);
         }
+        btnGuardar.setEnabled(false);
+        btnActualizar.setEnabled(true);
+        btnBorrar.setEnabled(true);
     }//GEN-LAST:event_btnBuscarDniActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
@@ -360,6 +368,9 @@ public class vistaInquilino extends javax.swing.JInternalFrame {
             txfGnombre.setText("");
             txfGapellido.setText("");
             txfGdni.setText("");
+            btnGuardar.setEnabled(true);
+            btnActualizar.setEnabled(false);
+            btnBorrar.setEnabled(false);
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
