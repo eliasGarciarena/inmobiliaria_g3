@@ -19,31 +19,28 @@ import javax.swing.JOptionPane;
 public class InmuebleData {
 
     private Connection conn = null;
+    private PropietarioData pd;
 
     public InmuebleData(Conexion conexion) {
 
         conn = conexion.getConexion();
-
+        pd =new PropietarioData(conexion);
     }
 
     public boolean AgregarInmueble(Inmueble inmueble) {
-        String querySql = "INSERT INTO inmueble (id_inquilino,id_propietario,direccion,zona,estado_inmueble,tipo_inmueble,precio,caracteristicas,superficiemin,forma,activo)  VALUES (?, ?,?,?,?,?,?,?,?,?,? )";
+        String querySql = "INSERT INTO inmueble (id_propietario, direccion, zona, estado_inmueble, tipo_inmueble, precio, superficie, activo)  VALUES (?,?,?,?,?,?,?,?)";
 
         boolean insert = true;
         try {
             PreparedStatement ps = conn.prepareStatement(querySql, Statement.RETURN_GENERATED_KEYS);
-           /* ps.setInt(1, inmueble.getInquilino().getId());
-            ps.setInt(2, inmueble.getPropietario().getId());
-            ps.setString(3, inmueble.getDireccion());
-            ps.setString(4, inmueble.getZona());
-            ps.setString(5, Character.toString(inmueble.getEstadoLocal()));
-            ps.setString(6, Character.toString(inmueble.getTipoLocal()));
-            ps.setDouble(7, inmueble.getPrecioTrazado());
-            ps.setString(8, inmueble.getCaracteristicas());
-            ps.setLong(9, inmueble.getSuperficieMin());
-            ps.setString(10, inmueble.getForma());
-            ps.setBoolean(10, inmueble.isActivo());
-               */
+            ps.setInt(1, inmueble.getPropietario().getId());
+            ps.setString(2, inmueble.getDireccion());
+            ps.setString(3, inmueble.getZona());
+            ps.setString(4, inmueble.getEstadoInmueble());
+            ps.setString(5,inmueble.getTipoInmueble());
+            ps.setDouble(6,inmueble.getPrecio());
+            ps.setDouble(7, inmueble.getSuperficie());
+            ps.setBoolean(8, inmueble.isActivo());
             ps.executeUpdate();
 
             //Obtenemos el id asignado por la base de datos
@@ -76,7 +73,15 @@ public class InmuebleData {
             Inmueble inmueble;
             while (resultSet.next()) {
                 inmueble = new Inmueble();                
-                inmueble.setId(resultSet.getInt("id_inmueble"));                
+                inmueble.setId(resultSet.getInt("id_inmueble"));
+                inmueble.setPropietario(pd.obtenerPropietarioXId(resultSet.getInt("id_propietario")));
+                inmueble.setDireccion(resultSet.getString("direccion"));
+                inmueble.setZona(resultSet.getString("zona"));
+                inmueble.setEstadoInmueble(resultSet.getString("estado_inmueble"));
+                inmueble.setTipoInmueble(resultSet.getString("tipo_inmueble"));
+                inmueble.setPrecio(resultSet.getDouble("precio"));
+                inmueble.setSuperficie(resultSet.getDouble("superficie"));
+                inmueble.setActivo(resultSet.getBoolean("activo"));
                 inmuebleList.add(inmueble);
             }
             ps.close();
