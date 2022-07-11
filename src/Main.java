@@ -24,7 +24,7 @@ public class Main {
         InquilinoData inquid=new InquilinoData(intento);
         //inquid.borrarInquilino(1);
         Inquilino inquilino=new Inquilino(3,"Juanes","Merluza",45673007l,204456730071l,2665227378l,true,"Jose","Lombardo",20000011);
-        
+        System.out.println("Main sin vista");
         //inquid.agregarInquilino(inquilino);
         
         //inquid.modificarInquilino(inquilino);

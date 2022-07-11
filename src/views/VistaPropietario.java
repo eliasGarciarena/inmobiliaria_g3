@@ -70,6 +70,16 @@ public class VistaPropietario extends javax.swing.JInternalFrame {
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
+        setClosable(true);
+        setTitle("Propietario");
+        setToolTipText(null);
+        setMinimumSize(new java.awt.Dimension(513, 417));
+        setName(""); // NOI18N
+        setVisible(true);
+
+        jPanel1.setToolTipText(null);
+        jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
         jLabel1.setText("Propietario");
 
         lblNombre.setText("Nombre");
@@ -125,6 +135,8 @@ public class VistaPropietario extends javax.swing.JInternalFrame {
         });
 
         lblId.setText("Nº Registro");
+
+        txfId.setToolTipText(null);
 
         jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
@@ -224,9 +236,7 @@ public class VistaPropietario extends javax.swing.JInternalFrame {
                     .addComponent(txfTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblDomicilio)
-                        .addGap(53, 53, 53))
+                    .addComponent(lblDomicilio)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
