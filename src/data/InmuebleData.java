@@ -91,4 +91,73 @@ public class InmuebleData {
 
         return inmuebleList;
     }
+    
+    public Inmueble obtenerInmuebleXId(int id){
+        Inmueble inmu=null;
+        try{
+            String sql="SELECT * From inmueble WHERE id_inmueble=?";
+            PreparedStatement ps= conn.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs=ps.executeQuery();
+            if(rs.next()){
+                inmu=new Inmueble();
+                inmu.setId(rs.getInt("id_inmueble"));
+                inmu.setPropietario(pd.obtenerPropietarioXId(rs.getInt("id_propietario")));
+                inmu.setDireccion(rs.getString("direccion"));
+                inmu.setZona(rs.getString("Zona"));
+                inmu.setEstadoInmueble(rs.getString("estado_inmueble"));
+                inmu.setTipoInmueble(rs.getString("tipo_inmueble"));
+                inmu.setPrecio(rs.getDouble("precio"));
+                inmu.setSuperficie(rs.getDouble("superficie"));
+                inmu.setActivo(rs.getBoolean("Activo"));
+            }
+            ps.close();
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null,"Error al obtener inmueble con id:" +ex);
+        }
+        return inmu;
+    }
+    
+    public boolean modificarInmueble(Inmueble inmu){
+        boolean modi=false;
+        try{
+            String sql="UPDATE inmueble SET id_propietario=?,direccion=?,zona=?,estado_inmueble=?,tipo_inmueble=?,precio=?,superficie=?,activo=? WHERE id_inmueble=?";
+            PreparedStatement ps= conn.prepareStatement(sql);
+            ps.setInt(1, inmu.getPropietario().getId());
+            ps.setString(2, inmu.getDireccion());
+            ps.setString(3, inmu.getZona());
+            ps.setString(4, inmu.getEstadoInmueble());
+            ps.setString(5, inmu.getTipoInmueble());
+            ps.setDouble(6, inmu.getPrecio());
+            ps.setDouble(7, inmu.getSuperficie());
+            ps.setBoolean(8, inmu.isActivo());
+            ps.setInt(9, inmu.getId());
+            int rs= ps.executeUpdate();
+            if(rs!=0){
+                modi=true;
+                JOptionPane.showMessageDialog(null,"Inmueble agregado con exito.");
+            }
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null,"Error al tratar de modificar el inmueble:"+ ex);
+        }
+        return modi;
+    }
+    
+    public boolean borrarInmueble(int id){
+        boolean borrado=false;
+        try{
+            String sql="UPDATE inmueble SET activo=0 WHERE id_inmueble=?";
+            PreparedStatement ps= conn.prepareStatement(sql);
+            ps.setInt(1, id);
+            int rs= ps.executeUpdate();
+            if(rs!=0){
+                borrado=true;
+                JOptionPane.showMessageDialog(null, "El inmueble se ha borrado con exito.");
+            }
+            ps.close();
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null,"ERROR con el borrado del inmueble:"+ ex);
+        }
+        return borrado;
+    }
 }
