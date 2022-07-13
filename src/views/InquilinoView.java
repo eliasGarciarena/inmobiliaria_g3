@@ -45,8 +45,10 @@ public class InquilinoView extends javax.swing.JDialog {
         inquilino = new Inquilino();
         inquilinoData = new InquilinoData(con);
         obtenerInquilinoXId(ID);
-        btnBorrar.setEnabled(false);
-        btnActualizar.setEnabled(false);
+        btnGuardar.setEnabled(false);
+        btnLimpiar.setEnabled(false);
+        btnBorrar.setEnabled(true);
+        btnActualizar.setEnabled(true);
     }
 
     /**

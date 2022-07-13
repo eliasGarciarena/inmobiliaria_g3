@@ -136,7 +136,7 @@ public class InquilinoData {
     public Inquilino obtenerInquilinoXId(int id){
         Inquilino inqui=null;
         try{
-            String sql="SELECT * FROM inquilino WHERE id_inquilino=? AND activo=1";
+            String sql="SELECT * FROM inquilino WHERE id_inquilino=?";
             PreparedStatement ps=con.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet result=ps.executeQuery();
