@@ -23,6 +23,7 @@ public class InquilinoData {
     }
     
     public boolean agregarInquilino(Inquilino inqui){
+        System.out.println("Agregar Inquilino");
         boolean agregar=false;
         try{
             String sql="INSERT INTO inquilino(nombre, apellido, dni, cuit, telefono, nombre_Garante, apellido_garante, dni_garante, activo) VALUES (?,?,?,?,?,?,?,?,?)";

@@ -16,9 +16,10 @@ public class AppMain extends javax.swing.JFrame {
      * Creates new form AppMain
      */
     Conexion conn = new Conexion();
+    
 
     public AppMain() {
-        initComponents();
+        initComponents();        
     }
 
     /**
@@ -364,7 +365,6 @@ public class AppMain extends javax.swing.JFrame {
 
     private void btnAgregarInquilinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarInquilinoActionPerformed
         // TODO add your handling code here:
-
         InquilinoView inquilinoView = new InquilinoView(this, true, conn);
         inquilinoView.setVisible(true);
     }//GEN-LAST:event_btnAgregarInquilinoActionPerformed
