@@ -47,6 +47,7 @@ public class InmuebleData {
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
                 inmueble.setId(rs.getInt(1));
+                JOptionPane.showMessageDialog(null, "Se ha agregado con exito el inmueble");
             } else {
                 insert = false;
             }
@@ -135,7 +136,7 @@ public class InmuebleData {
             int rs= ps.executeUpdate();
             if(rs!=0){
                 modi=true;
-                JOptionPane.showMessageDialog(null,"Inmueble agregado con exito.");
+                JOptionPane.showMessageDialog(null,"Inmueble modificado con exito.");
             }
         }catch(Exception ex){
             JOptionPane.showMessageDialog(null,"Error al tratar de modificar el inmueble:"+ ex);
