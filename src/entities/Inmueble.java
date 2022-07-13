@@ -17,12 +17,14 @@ public class Inmueble {
     private String estadoInmueble;
     private double precio;
     private double superficie;
+    private boolean disponibilidad;
     private boolean activo;
+
 
     public Inmueble() {
     }
 
-    public Inmueble(int id, Propietario propietario, String direccion, String zona, String tipoInmueble, String estadoInmueble, double precio, double superficie, boolean activo) {
+    public Inmueble(int id, Propietario propietario, String direccion, String zona, String tipoInmueble, String estadoInmueble, double precio, double superficie, boolean disponibilidad, boolean activo) {
         this.id = id;
         this.propietario = propietario;
         this.direccion = direccion;
@@ -31,10 +33,12 @@ public class Inmueble {
         this.estadoInmueble = estadoInmueble;
         this.precio = precio;
         this.superficie = superficie;
+        this.disponibilidad = disponibilidad;
         this.activo = activo;
+        
     }
 
-    public Inmueble(Propietario propietario, String direccion, String zona, String tipoInmueble, String estadoInmueble, double precio, double superficie, boolean activo) {
+    public Inmueble(Propietario propietario, String direccion, String zona, String tipoInmueble, String estadoInmueble, double precio, double superficie,boolean disponibilidad, boolean activo) {
         this.propietario = propietario;
         this.direccion = direccion;
         this.zona = zona;
@@ -42,8 +46,9 @@ public class Inmueble {
         this.estadoInmueble = estadoInmueble;
         this.precio = precio;
         this.superficie = superficie;
+        this.disponibilidad = disponibilidad;
         this.activo = activo;
-    }
+    }        
 
     public int getId() {
         return id;
@@ -109,13 +114,23 @@ public class Inmueble {
         this.superficie = superficie;
     }
 
-    public boolean isActivo() {
+    public boolean getActivo() {
         return activo;
     }
 
     public void setActivo(boolean activo) {
         this.activo = activo;
     }
+
+    public boolean getDisponibilidad() {
+        return disponibilidad;
+    }
+
+    public void setDisponibilidad(boolean disponibilidad) {
+        this.disponibilidad = disponibilidad;
+    }
+
+    
     
     @Override
     public String toString() {

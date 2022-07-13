@@ -64,7 +64,7 @@ public class AppMain extends javax.swing.JFrame {
         }
     }
 
-    //TABLA INMUEBLE
+    // TABLA INMUEBLE
     public void cargarTablaInmueble() {
         DefaultTableModel tableModel = (DefaultTableModel) tablaInmuebles.getModel();
         // Limpiamos la tabla
@@ -82,7 +82,7 @@ public class AppMain extends javax.swing.JFrame {
                             // superficie, boolean activo) {
                             inmuebleAux.getId(),
                             inmuebleAux.getZona(),
-                            inmuebleAux.getDireccion(),                            
+                            inmuebleAux.getDireccion(),
                             inmuebleAux.getTipoInmueble(),
                             inmuebleAux.getEstadoInmueble(),
                             inmuebleAux.getSuperficie(),
@@ -101,6 +101,7 @@ public class AppMain extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -114,9 +115,9 @@ public class AppMain extends javax.swing.JFrame {
         tablaInmuebles = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
+        rbtnInmueblesAlquilados = new javax.swing.JRadioButton();
+        rbtnInmueblesLibres = new javax.swing.JRadioButton();
+        rbtnInmueblesTodos = new javax.swing.JRadioButton();
         btnAgregarInmueble = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -177,6 +178,11 @@ public class AppMain extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tablaInmuebles.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaInmueblesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablaInmuebles);
         if (tablaInmuebles.getColumnModel().getColumnCount() > 0) {
             tablaInmuebles.getColumnModel().getColumn(7).setResizable(false);
@@ -185,14 +191,30 @@ public class AppMain extends javax.swing.JFrame {
 
         jLabel2.setText("Mostrar:");
 
-        btnGrupInmueble.add(jRadioButton1);
-        jRadioButton1.setText("Alquilados");
+        btnGrupInmueble.add(rbtnInmueblesAlquilados);
+        rbtnInmueblesAlquilados.setText("Alquilados");
+        rbtnInmueblesAlquilados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtnInmueblesAlquiladosActionPerformed(evt);
+            }
+        });
 
-        btnGrupInmueble.add(jRadioButton2);
-        jRadioButton2.setText("Libres");
+        btnGrupInmueble.add(rbtnInmueblesLibres);
+        rbtnInmueblesLibres.setText("Libres");
+        rbtnInmueblesLibres.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtnInmueblesLibresActionPerformed(evt);
+            }
+        });
 
-        btnGrupInmueble.add(jRadioButton3);
-        jRadioButton3.setText("Todos");
+        btnGrupInmueble.add(rbtnInmueblesTodos);
+        rbtnInmueblesTodos.setSelected(true);
+        rbtnInmueblesTodos.setText("Todos");
+        rbtnInmueblesTodos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtnInmueblesTodosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -202,11 +224,11 @@ public class AppMain extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(rbtnInmueblesAlquilados, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(rbtnInmueblesLibres, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jRadioButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(rbtnInmueblesTodos, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(58, 58, 58))
         );
         jPanel5Layout.setVerticalGroup(
@@ -215,9 +237,9 @@ public class AppMain extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jRadioButton3))
+                    .addComponent(rbtnInmueblesAlquilados)
+                    .addComponent(rbtnInmueblesLibres)
+                    .addComponent(rbtnInmueblesTodos))
                 .addGap(21, 21, 21))
         );
 
@@ -490,6 +512,40 @@ public class AppMain extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void rbtnInmueblesTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnInmueblesTodosActionPerformed
+        // TODO add your handling code here:
+        if (rbtnInmueblesTodos.isSelected()) {
+            inmuebleList = inmuebleData.ObtenerInmuebles();
+            cargarTablaInmueble();
+        }
+    }//GEN-LAST:event_rbtnInmueblesTodosActionPerformed
+
+    private void rbtnInmueblesLibresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnInmueblesLibresActionPerformed
+        // TODO add your handling code here:
+        if (rbtnInmueblesLibres.isSelected()) {
+            inmuebleList = inmuebleData.ObtenerInmueblesLibres();
+            cargarTablaInmueble();
+        }
+    }//GEN-LAST:event_rbtnInmueblesLibresActionPerformed
+
+    private void rbtnInmueblesAlquiladosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnInmueblesAlquiladosActionPerformed
+        // TODO add your handling code here:
+        if (rbtnInmueblesAlquilados.isSelected()) {
+            inmuebleList = inmuebleData.ObtenerInmueblesAlquilados();
+            cargarTablaInmueble();
+        }
+    }//GEN-LAST:event_rbtnInmueblesAlquiladosActionPerformed
+
+    private void tablaInmueblesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaInmueblesMouseClicked
+        // TODO add your handling code here:
+        javax.swing.JTable tableSource = (javax.swing.JTable) evt.getSource();
+        int fila = tableSource.rowAtPoint(evt.getPoint());
+        int columna = tableSource.columnAtPoint(evt.getPoint());
+        if (columna == tableSource.getColumnModel().getColumnCount() - 1) {
+            
+        }
+    }//GEN-LAST:event_tablaInmueblesMouseClicked
+
     private void tablaInquilinosMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_tablaInquilinosMouseClicked
         // TODO add your handling code here:
         javax.swing.JTable tableSource = (javax.swing.JTable) evt.getSource();
@@ -592,14 +648,14 @@ public class AppMain extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanelInicio;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane6;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JRadioButton rbtnInmueblesAlquilados;
+    private javax.swing.JRadioButton rbtnInmueblesLibres;
+    private javax.swing.JRadioButton rbtnInmueblesTodos;
     private javax.swing.JRadioButton rbtnInquilinoActivos;
     private javax.swing.JRadioButton rbtnInquilinoInactivos;
     private javax.swing.JRadioButton rbtnInquilinoTodos;

@@ -28,7 +28,7 @@ public class InmuebleData {
     }
 
     public boolean AgregarInmueble(Inmueble inmueble) {
-        String querySql = "INSERT INTO inmueble (id_propietario, direccion, zona, estado_inmueble, tipo_inmueble, precio, superficie, activo)  VALUES (?,?,?,?,?,?,?,?)";
+        String querySql = "INSERT INTO inmueble (id_propietario, direccion, zona, estado_inmueble, tipo_inmueble, precio, superficie,disponibilidad, activo)  VALUES (?,?,?,?,?,?,?,?)";
 
         boolean insert = true;
         try {
@@ -40,7 +40,8 @@ public class InmuebleData {
             ps.setString(5,inmueble.getTipoInmueble());
             ps.setDouble(6,inmueble.getPrecio());
             ps.setDouble(7, inmueble.getSuperficie());
-            ps.setBoolean(8, inmueble.isActivo());
+            ps.setBoolean(8, inmueble.getDisponibilidad());
+            ps.setBoolean(9, inmueble.getActivo());
             ps.executeUpdate();
 
             //Obtenemos el id asignado por la base de datos
@@ -55,7 +56,7 @@ public class InmuebleData {
         } catch (SQLException ex) {
             insert = false;
             if (ex instanceof java.sql.SQLIntegrityConstraintViolationException) {
-                JOptionPane.showMessageDialog(null, "Ya existe un alumno con ese dni ");
+                JOptionPane.showMessageDialog(null, "Ya existe un inmueble con ese id");
             } else {
                 JOptionPane.showMessageDialog(null, "Error de sintaxis " + ex);
             }
@@ -66,36 +67,6 @@ public class InmuebleData {
 
     
     public ArrayList<Inmueble> ObtenerInmuebles() {
-        ArrayList<Inmueble> inmuebleList = new ArrayList<>();
-
-        try {
-            String sql = "SELECT * FROM inmueble";
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ResultSet resultSet = ps.executeQuery();
-
-            Inmueble inmueble;
-            while (resultSet.next()) {
-                inmueble = new Inmueble();                
-                inmueble.setId(resultSet.getInt("id_inmueble"));
-                inmueble.setPropietario(pd.obtenerPropietarioXId(resultSet.getInt("id_propietario")));
-                inmueble.setDireccion(resultSet.getString("direccion"));
-                inmueble.setZona(resultSet.getString("zona"));
-                inmueble.setEstadoInmueble(resultSet.getString("estado_inmueble"));
-                inmueble.setTipoInmueble(resultSet.getString("tipo_inmueble"));
-                inmueble.setPrecio(resultSet.getDouble("precio"));
-                inmueble.setSuperficie(resultSet.getDouble("superficie"));
-                inmueble.setActivo(resultSet.getBoolean("activo"));
-                inmuebleList.add(inmueble);
-            }
-            ps.close();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,ex, "Error al obtener todos inmuebles",JOptionPane.INFORMATION_MESSAGE);
-        }
-
-        return inmuebleList;
-    }
-
-    public ArrayList<Inmueble> ObtenerInmueblesAlquilados() {
         ArrayList<Inmueble> inmuebleList = new ArrayList<>();
 
         try {
@@ -114,22 +85,22 @@ public class InmuebleData {
                 inmueble.setTipoInmueble(resultSet.getString("tipo_inmueble"));
                 inmueble.setPrecio(resultSet.getDouble("precio"));
                 inmueble.setSuperficie(resultSet.getDouble("superficie"));
-                inmueble.setActivo(resultSet.getBoolean("activo"));
+                inmueble.setDisponibilidad(resultSet.getBoolean("disponibilidad"));
                 inmuebleList.add(inmueble);
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al obtener los inmuebles alquilados");
+            JOptionPane.showMessageDialog(null,ex, "Error al obtener todos inmuebles",JOptionPane.INFORMATION_MESSAGE);
         }
 
         return inmuebleList;
     }
-    
-    public ArrayList<Inmueble> ObtenerInmueblesLibres() {
+
+    public ArrayList<Inmueble> ObtenerInmueblesAlquilados() {
         ArrayList<Inmueble> inmuebleList = new ArrayList<>();
 
         try {
-            String sql = "SELECT * FROM inmueble WHERE activo=0";
+            String sql = "SELECT * FROM inmueble WHERE activo=1 AND disponibilidad=1";
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet resultSet = ps.executeQuery();
 
@@ -144,7 +115,37 @@ public class InmuebleData {
                 inmueble.setTipoInmueble(resultSet.getString("tipo_inmueble"));
                 inmueble.setPrecio(resultSet.getDouble("precio"));
                 inmueble.setSuperficie(resultSet.getDouble("superficie"));
-                inmueble.setActivo(resultSet.getBoolean("activo"));
+                inmueble.setDisponibilidad(resultSet.getBoolean("disponibilidad"));
+                inmuebleList.add(inmueble);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al obtener los inmuebles alquilados");
+        }
+
+        return inmuebleList;
+    }
+    
+    public ArrayList<Inmueble> ObtenerInmueblesLibres() {
+        ArrayList<Inmueble> inmuebleList = new ArrayList<>();
+
+        try {
+            String sql = "SELECT * FROM inmueble WHERE activo=1 AND disponibilidad=0";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet resultSet = ps.executeQuery();
+
+            Inmueble inmueble;
+            while (resultSet.next()) {
+                inmueble = new Inmueble();                
+                inmueble.setId(resultSet.getInt("id_inmueble"));
+                inmueble.setPropietario(pd.obtenerPropietarioXId(resultSet.getInt("id_propietario")));
+                inmueble.setDireccion(resultSet.getString("direccion"));
+                inmueble.setZona(resultSet.getString("zona"));
+                inmueble.setEstadoInmueble(resultSet.getString("estado_inmueble"));
+                inmueble.setTipoInmueble(resultSet.getString("tipo_inmueble"));
+                inmueble.setPrecio(resultSet.getDouble("precio"));
+                inmueble.setSuperficie(resultSet.getDouble("superficie"));
+                inmueble.setDisponibilidad(resultSet.getBoolean("disponibilidad"));
                 inmuebleList.add(inmueble);
             }
             ps.close();
@@ -172,7 +173,7 @@ public class InmuebleData {
                 inmu.setTipoInmueble(rs.getString("tipo_inmueble"));
                 inmu.setPrecio(rs.getDouble("precio"));
                 inmu.setSuperficie(rs.getDouble("superficie"));
-                inmu.setActivo(rs.getBoolean("Activo"));
+                inmu.setDisponibilidad(rs.getBoolean("disponibilidad"));
             }
             ps.close();
         }catch(Exception ex){
@@ -184,7 +185,7 @@ public class InmuebleData {
     public boolean modificarInmueble(Inmueble inmu){
         boolean modi=false;
         try{
-            String sql="UPDATE inmueble SET id_propietario=?,direccion=?,zona=?,estado_inmueble=?,tipo_inmueble=?,precio=?,superficie=?,activo=? WHERE id_inmueble=?";
+            String sql="UPDATE inmueble SET id_propietario=?,direccion=?,zona=?,estado_inmueble=?,tipo_inmueble=?,precio=?,superficie=?,disponibilidad,activo=? WHERE id_inmueble=?";
             PreparedStatement ps= conn.prepareStatement(sql);
             ps.setInt(1, inmu.getPropietario().getId());
             ps.setString(2, inmu.getDireccion());
@@ -193,8 +194,9 @@ public class InmuebleData {
             ps.setString(5, inmu.getTipoInmueble());
             ps.setDouble(6, inmu.getPrecio());
             ps.setDouble(7, inmu.getSuperficie());
-            ps.setBoolean(8, inmu.isActivo());
-            ps.setInt(9, inmu.getId());
+            ps.setBoolean(8, inmu.getDisponibilidad());
+            ps.setBoolean(9, inmu.getActivo());
+            ps.setInt(10, inmu.getId());
             int rs= ps.executeUpdate();
             if(rs!=0){
                 modi=true;
