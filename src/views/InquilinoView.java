@@ -333,7 +333,7 @@ public class InquilinoView extends javax.swing.JDialog {
             inquilino.setApellidoGarante(txfGapellido.getText());
             inquilino.setDniGarante(Long.parseLong(txfGdni.getText()));
             inquilino.setActivo(cbxActivo.isSelected());
-            System.out.println(inquilino);
+            System.out.println("Inquilino: "+inquilino);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Error al con los datos del inquilino:" + ex);
         }
