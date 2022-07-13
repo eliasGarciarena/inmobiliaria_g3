@@ -53,7 +53,63 @@ public class InquilinoData {
     public ArrayList<Inquilino> obtenerInquilinos(){
         ArrayList<Inquilino> inquilinos=new ArrayList<Inquilino>();
         try{
+            String sql="SELECT * FROM inquilino";
+            PreparedStatement ps=con.prepareStatement(sql);
+            ResultSet result=ps.executeQuery();
+            Inquilino inqui;
+            while(result.next()){
+                inqui=new Inquilino();
+                inqui.setId(result.getInt("id_inquilino"));
+                inqui.setNombre(result.getString("nombre"));
+                inqui.setApellido(result.getString("apellido"));
+                inqui.setDni(result.getLong("dni"));
+                inqui.setCuit(result.getLong("cuit"));
+                inqui.setNombreGarante(result.getString("nombre_garante"));
+                inqui.setApellidoGarante(result.getString("apellido_garante"));
+                inqui.setDniGarante(result.getLong("dni_garante"));
+                inqui.setTelefono(result.getLong("telefono"));
+                inqui.setActivo(result.getBoolean("activo"));
+                inquilinos.add(inqui);
+            }
+            ps.close();
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Error al conseguir lista de INquilinos"+ex);
+        }
+        return inquilinos;
+    }
+
+    public ArrayList<Inquilino> obtenerInquilinosActivos(){
+        ArrayList<Inquilino> inquilinos=new ArrayList<Inquilino>();
+        try{
             String sql="SELECT * FROM inquilino WHERE activo=1";
+            PreparedStatement ps=con.prepareStatement(sql);
+            ResultSet result=ps.executeQuery();
+            Inquilino inqui;
+            while(result.next()){
+                inqui=new Inquilino();
+                inqui.setId(result.getInt("id_inquilino"));
+                inqui.setNombre(result.getString("nombre"));
+                inqui.setApellido(result.getString("apellido"));
+                inqui.setDni(result.getLong("dni"));
+                inqui.setCuit(result.getLong("cuit"));
+                inqui.setNombreGarante(result.getString("nombre_garante"));
+                inqui.setApellidoGarante(result.getString("apellido_garante"));
+                inqui.setDniGarante(result.getLong("dni_garante"));
+                inqui.setTelefono(result.getLong("telefono"));
+                inqui.setActivo(result.getBoolean("activo"));
+                inquilinos.add(inqui);
+            }
+            ps.close();
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Error al conseguir lista de INquilinos"+ex);
+        }
+        return inquilinos;
+    }
+
+    public ArrayList<Inquilino> obtenerInquilinosInactivos(){
+        ArrayList<Inquilino> inquilinos=new ArrayList<Inquilino>();
+        try{
+            String sql="SELECT * FROM inquilino WHERE activo=0";
             PreparedStatement ps=con.prepareStatement(sql);
             ResultSet result=ps.executeQuery();
             Inquilino inqui;
