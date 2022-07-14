@@ -105,7 +105,32 @@ public class ContratoData {
         }
         return con;
     }
-    
+    public Contrato_inmueble obtenerContratoXInmuebleId(int id){
+        Contrato_inmueble contrato=null;
+        try{
+            String sql="SELECT * FROM contrato_inmueble WHERE id_inmueble=? AND fecha_final>?";
+            PreparedStatement ps= conn.prepareStatement(sql);
+            ps.setInt(1, id);
+            LocalDate fech= LocalDate.now();
+            ps.setDate(2, Date.valueOf(fech));
+            ResultSet rs= ps.executeQuery();
+            while(rs.next()){
+                contrato=new Contrato_inmueble();
+                contrato.setId(rs.getInt("id_contrato"));
+                contrato.setInqui(inquidata.obtenerInquilinoXId(rs.getInt("id_inquilino")));
+                contrato.setInmu(inmudata.obtenerInmuebleXId(rs.getInt("id_inmueble")));
+                contrato.setFechaInicio(rs.getDate("fecha_inicio").toLocalDate());
+                contrato.setFechaFinal(rs.getDate("fecha_final").toLocalDate());
+                contrato.setMarca(rs.getString("marca"));
+                contrato.setObservaciones(rs.getString("observaciones"));
+                contrato.setActivo(rs.getBoolean("activo"));
+            }
+            ps.close();
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null,"Error al obtener contrato por id inmueble:"+ ex);
+        }
+        return contrato;
+    }
     public boolean modificacionDeContrato(Contrato_inmueble contrat){
         boolean modific=false;
         try{
