@@ -1,4 +1,4 @@
-package views;
+package views.oldView;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
