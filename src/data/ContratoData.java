@@ -44,6 +44,7 @@ public class ContratoData {
             ps.setString(5, contrato.getMarca());
             ps.setString(6, contrato.getObservaciones());
             ps.setBoolean(7, contrato.isActivo());
+            ps.executeUpdate();
             ResultSet rs= ps.getGeneratedKeys();
             if(rs.next()){
                 guardado=true;
