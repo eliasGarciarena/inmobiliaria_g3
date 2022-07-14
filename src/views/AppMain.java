@@ -86,7 +86,7 @@ public class AppMain extends javax.swing.JFrame {
                             inmuebleAux.getTipoInmueble(),
                             inmuebleAux.getEstadoInmueble(),
                             inmuebleAux.getSuperficie(),
-                            inmuebleAux.getPrecio(),
+                            inmuebleAux.getPrecio(),                            
                             "VER" });
         }
     }
@@ -244,6 +244,11 @@ public class AppMain extends javax.swing.JFrame {
         );
 
         btnAgregarInmueble.setText("Agregar Inmueble");
+        btnAgregarInmueble.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarInmuebleActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
@@ -542,9 +547,16 @@ public class AppMain extends javax.swing.JFrame {
         int fila = tableSource.rowAtPoint(evt.getPoint());
         int columna = tableSource.columnAtPoint(evt.getPoint());
         if (columna == tableSource.getColumnModel().getColumnCount() - 1) {
-            
+            InmuebleView inmuebleView = new InmuebleView(this, true, conn, inmuebleList.get(fila).getId());
+            inmuebleView.setVisible(true);
         }
     }//GEN-LAST:event_tablaInmueblesMouseClicked
+
+    private void btnAgregarInmuebleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarInmuebleActionPerformed
+        // TODO add your handling code here:
+        InmuebleView inmuebleView = new InmuebleView(this, true, conn);
+            inmuebleView.setVisible(true);
+    }//GEN-LAST:event_btnAgregarInmuebleActionPerformed
 
     private void tablaInquilinosMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_tablaInquilinosMouseClicked
         // TODO add your handling code here:

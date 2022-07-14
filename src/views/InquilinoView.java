@@ -44,7 +44,7 @@ public class InquilinoView extends javax.swing.JDialog {
         initComponents();
         inquilino = new Inquilino();
         inquilinoData = new InquilinoData(con);
-        obtenerInquilinoXId(ID);
+        obtenerInquilinoXId(ID);        
         btnGuardar.setEnabled(false);
         btnLimpiar.setEnabled(false);
         btnBorrar.setEnabled(true);
@@ -65,7 +65,7 @@ public class InquilinoView extends javax.swing.JDialog {
         btnLimpiar = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
         btnBorrar = new javax.swing.JButton();
-        btnSalri = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         txfGdni = new javax.swing.JTextField();
         lblGdni = new javax.swing.JLabel();
@@ -121,10 +121,10 @@ public class InquilinoView extends javax.swing.JDialog {
             }
         });
 
-        btnSalri.setText("Salir");
-        btnSalri.addActionListener(new java.awt.event.ActionListener() {
+        btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalriActionPerformed(evt);
+                btnSalirActionPerformed(evt);
             }
         });
 
@@ -203,6 +203,7 @@ public class InquilinoView extends javax.swing.JDialog {
 
         lblTefelono.setText("Telefono");
 
+        txfId.setEditable(false);
         txfId.setMinimumSize(new java.awt.Dimension(20, 100));
 
         txfNombre.setMinimumSize(new java.awt.Dimension(20, 100));
@@ -287,9 +288,9 @@ public class InquilinoView extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 12, Short.MAX_VALUE))
+                .addGap(0, 16, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnGuardar)
@@ -300,8 +301,8 @@ public class InquilinoView extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addComponent(btnBorrar)
                 .addGap(29, 29, 29)
-                .addComponent(btnSalri)
-                .addGap(61, 61, 61))
+                .addComponent(btnSalir)
+                .addGap(44, 44, 44))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -316,7 +317,7 @@ public class InquilinoView extends javax.swing.JDialog {
                     .addComponent(btnLimpiar)
                     .addComponent(btnActualizar)
                     .addComponent(btnBorrar)
-                    .addComponent(btnSalri))
+                    .addComponent(btnSalir))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -334,8 +335,7 @@ public class InquilinoView extends javax.swing.JDialog {
             inquilino.setNombreGarante(txfGnombre.getText());
             inquilino.setApellidoGarante(txfGapellido.getText());
             inquilino.setDniGarante(Long.parseLong(txfGdni.getText()));
-            inquilino.setActivo(cbxActivo.isSelected());
-            System.out.println("Inquilino: "+inquilino);
+            inquilino.setActivo(cbxActivo.isSelected());            
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Error al con los datos del inquilino:" + ex);
         }
@@ -395,7 +395,7 @@ public class InquilinoView extends javax.swing.JDialog {
         }
     }// GEN-LAST:event_btnBorrarActionPerformed
 
-    private void btnSalriActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSalriActionPerformed
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSalriActionPerformed
         // TODO add your handling code here:
         dispose();
     }// GEN-LAST:event_btnSalriActionPerformed
@@ -477,7 +477,7 @@ public class InquilinoView extends javax.swing.JDialog {
     private javax.swing.JButton btnBorrar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnLimpiar;
-    private javax.swing.JButton btnSalri;
+    private javax.swing.JButton btnSalir;
     private javax.swing.JCheckBox cbxActivo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;

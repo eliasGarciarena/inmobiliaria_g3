@@ -3,7 +3,6 @@
  */
 package entities;
 
-import java.util.ArrayList;
 
 /**
  *
@@ -47,7 +46,7 @@ public class Propietario extends Persona {
 
     @Override
     public String toString() {
-        return super.toString(); //To change body of generated methods, choose Tools | Templates.
+        return getId()+" - "+ getNombre()+" "+getApellido(); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
