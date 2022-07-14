@@ -679,6 +679,13 @@ public class AppMain extends javax.swing.JFrame {
 
     private void tablaPropietariosMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_tablaPropietariosMouseClicked
         // TODO add your handling code here:
+        javax.swing.JTable tableSource = (javax.swing.JTable) evt.getSource();
+        int fila = tableSource.rowAtPoint(evt.getPoint());
+        int columna = tableSource.columnAtPoint(evt.getPoint());
+        if (columna == tableSource.getColumnModel().getColumnCount() - 1) {
+            PropietarioView propietarioView = new PropietarioView(this, true, conn, propietarioList.get(fila));
+            propietarioView.setVisible(true);
+        }
     }// GEN-LAST:event_tablaPropietariosMouseClicked
 
     private void btnLimpiarBuscarInmuebleActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnLimpiarBuscarInmuebleActionPerformed
