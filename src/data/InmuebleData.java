@@ -153,7 +153,7 @@ public class InmuebleData {
         }
 
         return inmuebleList;
-    }
+    }    
 
     public Inmueble obtenerInmuebleXId(int id){
         Inmueble inmu=null;
