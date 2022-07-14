@@ -5,8 +5,11 @@
 package views;
 
 import data.Conexion;
+import data.InmuebleData;
 import data.PropietarioData;
+import entities.Inmueble;
 import entities.Propietario;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -16,6 +19,7 @@ public class PropietarioView extends javax.swing.JDialog {
 
     Propietario propietario;
     PropietarioData propietarioData;
+    InmuebleData inmuebleData;
 
     /**
      * Creates new form PropietarioView
@@ -30,12 +34,15 @@ public class PropietarioView extends javax.swing.JDialog {
         initComponents();
         propietario = new Propietario();
         propietarioData = new PropietarioData(conn);
+        inmuebleData = new InmuebleData(conn);
     }
     
     public PropietarioView(java.awt.Frame parent, boolean modal, Conexion conn, Propietario _propietario) {
         super(parent, modal);
         initComponents();
         propietarioData = new PropietarioData(conn);
+        inmuebleData = new InmuebleData(conn);
+        
         this.propietario = _propietario;
         
         txfId.setText(String.valueOf(propietario.getId()));
@@ -44,6 +51,10 @@ public class PropietarioView extends javax.swing.JDialog {
         txfDni.setText(String.valueOf(propietario.getDni()));
         txfDomicilio.setText(propietario.getDomicilio());
         txfTelefono.setText(String.valueOf(propietario.getTelefono()));
+                
+        selectInmueblesAlquilados.setModel(new DefaultComboBoxModel(inmuebleData.ObtenerInmueblesAlquiladosXPropietario(propietario.getId()).toArray()));
+        selectInmueblesLibres.setModel(new DefaultComboBoxModel(inmuebleData.ObtenerInmueblesLibresXPropietario(propietario.getId()).toArray()));
+
     }
     
 
@@ -80,11 +91,11 @@ public class PropietarioView extends javax.swing.JDialog {
         jButton4 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jButton5 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        selectInmueblesAlquilados = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jButton6 = new javax.swing.JButton();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        selectInmueblesLibres = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -215,8 +226,6 @@ public class PropietarioView extends javax.swing.JDialog {
 
         jButton5.setText("Ver");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabel8.setText("Inmuebles Alquilados");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -234,7 +243,7 @@ public class PropietarioView extends javax.swing.JDialog {
                         .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(selectInmueblesAlquilados, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -243,7 +252,7 @@ public class PropietarioView extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(selectInmueblesAlquilados, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton5)
                 .addContainerGap(24, Short.MAX_VALUE))
@@ -253,8 +262,6 @@ public class PropietarioView extends javax.swing.JDialog {
         jPanel4.setPreferredSize(new java.awt.Dimension(230, 135));
 
         jButton6.setText("Ver");
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel9.setText("Inmuebles Libres");
 
@@ -273,7 +280,7 @@ public class PropietarioView extends javax.swing.JDialog {
                         .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(selectInmueblesLibres, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -282,7 +289,7 @@ public class PropietarioView extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(selectInmueblesLibres, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton6)
                 .addContainerGap(24, Short.MAX_VALUE))
@@ -373,8 +380,6 @@ public class PropietarioView extends javax.swing.JDialog {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -390,6 +395,8 @@ public class PropietarioView extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JRadioButton rbtnEstadoActivo;
     private javax.swing.JRadioButton rbtnEstadoInactivo;
+    private javax.swing.JComboBox<Inmueble> selectInmueblesAlquilados;
+    private javax.swing.JComboBox<Inmueble> selectInmueblesLibres;
     private javax.swing.JTextField txfApellido;
     private javax.swing.JTextField txfDni;
     private javax.swing.JTextField txfDomicilio;
