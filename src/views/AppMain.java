@@ -51,6 +51,8 @@ public class AppMain extends javax.swing.JFrame {
         cargarTablaInquilinos();
         cargarTablaInmueble();
         cargarTablaPropietario();
+        
+        btnAlquiler.setEnabled(false);
     }
 
     public void cargarTablaInquilinos() {
@@ -166,6 +168,7 @@ public class AppMain extends javax.swing.JFrame {
         btnBuscarInmueble = new javax.swing.JButton();
         selectBuscarInmueble = new javax.swing.JComboBox<>();
         btnLimpiarBuscarInmueble = new javax.swing.JButton();
+        btnAlquiler = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaInquilinos = new javax.swing.JTable();
@@ -354,6 +357,13 @@ public class AppMain extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        btnAlquiler.setText("Alquiler");
+        btnAlquiler.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlquilerActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout JPanelInmueblesLayout = new javax.swing.GroupLayout(JPanelInmuebles);
         JPanelInmuebles.setLayout(JPanelInmueblesLayout);
         JPanelInmueblesLayout.setHorizontalGroup(
@@ -367,9 +377,13 @@ public class AppMain extends javax.swing.JFrame {
                     .addGroup(JPanelInmueblesLayout.createSequentialGroup()
                         .addGap(404, 404, 404)
                         .addComponent(btnAgregarInmueble, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addGroup(JPanelInmueblesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnAlquiler)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         JPanelInmueblesLayout.setVerticalGroup(
             JPanelInmueblesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -381,10 +395,12 @@ public class AppMain extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanelInmueblesLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(31, Short.MAX_VALUE)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
+                .addComponent(btnAlquiler)
                 .addContainerGap())
         );
 
@@ -677,6 +693,19 @@ public class AppMain extends javax.swing.JFrame {
         propietarioView.setVisible(true);
     }//GEN-LAST:event_btnAgregarPropietarioActionPerformed
 
+    private void btnAlquilerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlquilerActionPerformed
+        // TODO add your handling code here:
+        Inmueble inmu=new Inmueble();
+        try{
+        int id =(int) tablaInmuebles.getValueAt(tablaInmuebles.getSelectedRow(), 0);
+        inmu= inmuebleData.obtenerInmuebleXId(id);
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(this,"" +ex);
+        }
+        ContratoView con=new ContratoView(this,true,inmu,conn);
+        con.setVisible(true);
+    }//GEN-LAST:event_btnAlquilerActionPerformed
+
     private void tablaPropietariosMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_tablaPropietariosMouseClicked
         // TODO add your handling code here:
         javax.swing.JTable tableSource = (javax.swing.JTable) evt.getSource();
@@ -729,6 +758,9 @@ public class AppMain extends javax.swing.JFrame {
         if (columna == tableSource.getColumnModel().getColumnCount() - 1) {
             InmuebleView inmuebleView = new InmuebleView(this, true, conn, inmuebleList.get(fila).getId());
             inmuebleView.setVisible(true);
+        }
+        if(tablaInmuebles.getSelectedColumn()>-1){
+            btnAlquiler.setEnabled(true);
         }
     }// GEN-LAST:event_tablaInmueblesMouseClicked
 
@@ -896,6 +928,7 @@ public class AppMain extends javax.swing.JFrame {
     private javax.swing.JButton btnAgregarInmueble;
     private javax.swing.JButton btnAgregarInquilino;
     private javax.swing.JButton btnAgregarPropietario;
+    private javax.swing.JButton btnAlquiler;
     private javax.swing.JButton btnBuscarInmueble;
     private javax.swing.ButtonGroup btnGrupInmueble;
     private javax.swing.ButtonGroup btnGrupInquilinos;

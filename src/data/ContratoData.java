@@ -145,6 +145,7 @@ public class ContratoData {
             ps.setString(6, contrat.getObservaciones());
             ps.setBoolean(7, contrat.isActivo());
             ps.setInt(8, contrat.getId());
+            ps.executeUpdate();
             int rs=ps.executeUpdate();
             if(rs !=0){
                 modific=true;
