@@ -45,7 +45,7 @@ public class PropietarioData {
                 JOptionPane.showMessageDialog(null,"Error al intentar agregar la materia","Error al agregar propietario",JOptionPane.ERROR_MESSAGE );
         }
         
-        return true;
+        return agrego;
     }
     public ArrayList<Propietario> obtenerPropietarios(){
         ArrayList<Propietario> propietarios=new ArrayList<Propietario>();
