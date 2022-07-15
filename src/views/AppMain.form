@@ -64,21 +64,32 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="257" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel7" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <Component id="jLabel6" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <Component id="jLabel8" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <Component id="jLabel9" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lblTotalInmueble" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <Component id="lblTotalInquilinos" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <Component id="lblTotalPropietario" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <Component id="lblContratosVigentes" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="jLabel7" min="-2" pref="100" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="lblTotalinmu" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" attributes="0">
+                                          <Component id="jLabel6" min="-2" pref="100" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="lblTotalInqui" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jLabel8" min="-2" pref="100" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="lblTotalprop" min="-2" pref="60" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jLabel9" min="-2" pref="100" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="lblTotalContratos" min="-2" pref="66" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="627" max="32767" attributes="0"/>
+                      <EmptySpace pref="664" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -88,25 +99,24 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="jLabel6" min="-2" pref="25" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jLabel7" min="-2" pref="25" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jLabel8" min="-2" pref="25" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
-                              <Component id="jLabel9" min="-2" pref="25" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="lblTotalInquilinos" min="-2" pref="25" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="lblTotalInmueble" min="-2" pref="25" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="lblTotalPropietario" min="-2" pref="25" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
-                              <Component id="lblContratosVigentes" min="-2" pref="25" max="-2" attributes="0"/>
-                          </Group>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel6" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                          <Component id="lblTotalInqui" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel7" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                          <Component id="lblTotalinmu" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel8" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                          <Component id="lblTotalprop" alignment="1" min="-2" pref="25" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel9" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                          <Component id="lblTotalContratos" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="264" max="32767" attributes="0"/>
                   </Group>
@@ -139,25 +149,13 @@
                 <Property name="text" type="java.lang.String" value="Contratos Vigentes"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="lblTotalInmueble">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Total Inmuebles"/>
-              </Properties>
+            <Component class="javax.swing.JLabel" name="lblTotalprop">
             </Component>
-            <Component class="javax.swing.JLabel" name="lblTotalPropietario">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Total Propietarios"/>
-              </Properties>
+            <Component class="javax.swing.JLabel" name="lblTotalinmu">
             </Component>
-            <Component class="javax.swing.JLabel" name="lblContratosVigentes">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Contratos Vigentes"/>
-              </Properties>
+            <Component class="javax.swing.JLabel" name="lblTotalInqui">
             </Component>
-            <Component class="javax.swing.JLabel" name="lblTotalInquilinos">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Total Inquilinos"/>
-              </Properties>
+            <Component class="javax.swing.JLabel" name="lblTotalContratos">
             </Component>
           </SubComponents>
         </Container>
