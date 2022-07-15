@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
 import data.Conexion;
+import data.ContratoData;
 import data.InmuebleData;
 import data.InquilinoData;
 import data.PropietarioData;
@@ -30,6 +31,7 @@ public class AppMain extends javax.swing.JFrame {
     InquilinoData inquilinoData;
     InmuebleData inmuebleData;
     PropietarioData propietarioData;
+    ContratoData contratoData;
 
     DefaultTableModel tableModel = new DefaultTableModel();
 
@@ -757,7 +759,7 @@ public class AppMain extends javax.swing.JFrame {
     private void rbtnInmueblesLibresActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_rbtnInmueblesLibresActionPerformed
         // TODO add your handling code here:
         if (rbtnInmueblesLibres.isSelected()) {
-            inmuebleList = inmuebleData.ObtenerInmueblesLibres();
+            inmuebleList = contratoData.InmueblesNoAlquilados();
             cargarTablaInmueble();
         }
     }// GEN-LAST:event_rbtnInmueblesLibresActionPerformed
@@ -765,7 +767,7 @@ public class AppMain extends javax.swing.JFrame {
     private void rbtnInmueblesAlquiladosActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_rbtnInmueblesAlquiladosActionPerformed
         // TODO add your handling code here:
         if (rbtnInmueblesAlquilados.isSelected()) {
-            inmuebleList = inmuebleData.ObtenerInmueblesAlquilados();
+            inmuebleList = contratoData.InmueblesAlquilados();
             cargarTablaInmueble();
         }
     }// GEN-LAST:event_rbtnInmueblesAlquiladosActionPerformed

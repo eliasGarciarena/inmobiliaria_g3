@@ -92,66 +92,6 @@ public class InmuebleData {
         return inmuebleList;
     }
 
-    public ArrayList<Inmueble> ObtenerInmueblesAlquilados() {
-        ArrayList<Inmueble> inmuebleList = new ArrayList<>();
-
-        try {
-            String sql = "SELECT * FROM inmueble WHERE activo=1 AND id_inmueble "
-                    + "IN (SELECT id_inmueble FROM contrato_inmueble WHERE activo=1)";
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ResultSet resultSet = ps.executeQuery();
-
-            Inmueble inmueble;
-            while (resultSet.next()) {
-                inmueble = new Inmueble();
-                inmueble.setId(resultSet.getInt("id_inmueble"));
-                inmueble.setPropietario(pd.obtenerPropietarioXId(resultSet.getInt("id_propietario")));
-                inmueble.setDireccion(resultSet.getString("direccion"));
-                inmueble.setZona(resultSet.getString("zona"));
-                inmueble.setEstadoInmueble(resultSet.getString("estado_inmueble"));
-                inmueble.setTipoInmueble(resultSet.getString("tipo_inmueble"));
-                inmueble.setPrecio(resultSet.getDouble("precio"));
-                inmueble.setSuperficie(resultSet.getDouble("superficie"));
-                inmuebleList.add(inmueble);
-            }
-            ps.close();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al obtener los Inmuebles ALQUILADOS\n" + ex);
-        }
-
-        return inmuebleList;
-    }
-
-    public ArrayList<Inmueble> ObtenerInmueblesLibres() {
-        ArrayList<Inmueble> inmuebleList = new ArrayList<>();
-
-        try {
-            String sql = "SELECT * FROM inmueble WHERE activo=1 AND id_inmueble "
-                    + "NOT IN (SELECT id_inmueble FROM contrato_inmueble WHERE activo=1)";
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ResultSet resultSet = ps.executeQuery();
-
-            Inmueble inmueble;
-            while (resultSet.next()) {
-                inmueble = new Inmueble();
-                inmueble.setId(resultSet.getInt("id_inmueble"));
-                inmueble.setPropietario(pd.obtenerPropietarioXId(resultSet.getInt("id_propietario")));
-                inmueble.setDireccion(resultSet.getString("direccion"));
-                inmueble.setZona(resultSet.getString("zona"));
-                inmueble.setEstadoInmueble(resultSet.getString("estado_inmueble"));
-                inmueble.setTipoInmueble(resultSet.getString("tipo_inmueble"));
-                inmueble.setPrecio(resultSet.getDouble("precio"));
-                inmueble.setSuperficie(resultSet.getDouble("superficie"));
-                inmuebleList.add(inmueble);
-            }
-            ps.close();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al obtener los Inmuebles LIBRES");
-        }
-
-        return inmuebleList;
-    }
-
     public Inmueble obtenerInmuebleXId(int id) {
         Inmueble inmu = null;
         try {
@@ -175,64 +115,6 @@ public class InmuebleData {
             JOptionPane.showMessageDialog(null, "Error al obtener Inmueble con ID\n" + ex);
         }
         return inmu;
-    }
-
-    public ArrayList<Inmueble> ObtenerInmueblesAlquiladosXPropietario(Integer id_propietario) {
-        ArrayList<Inmueble> inmuebleList = new ArrayList<>();
-        try {
-            String sql = "SELECT * FROM inmueble WHERE activo=1 AND id_propietario="
-                    + id_propietario + " AND id_inmueble IN (SELECT id_inmueble FROM contrato_inmueble WHERE activo=1)";
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ResultSet resultSet = ps.executeQuery();
-
-            Inmueble inmueble;
-            while (resultSet.next()) {
-                inmueble = new Inmueble();
-                inmueble.setId(resultSet.getInt("id_inmueble"));
-                inmueble.setPropietario(pd.obtenerPropietarioXId(resultSet.getInt("id_propietario")));
-                inmueble.setDireccion(resultSet.getString("direccion"));
-                inmueble.setZona(resultSet.getString("zona"));
-                inmueble.setEstadoInmueble(resultSet.getString("estado_inmueble"));
-                inmueble.setTipoInmueble(resultSet.getString("tipo_inmueble"));
-                inmueble.setPrecio(resultSet.getDouble("precio"));
-                inmueble.setSuperficie(resultSet.getDouble("superficie"));
-                inmuebleList.add(inmueble);
-            }
-            ps.close();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al obtener los Inmuebles ALQUILADOS del propietario " + id_propietario + "\n" + ex);
-        }
-
-        return inmuebleList;
-    }
-
-    public ArrayList<Inmueble> ObtenerInmueblesLibresXPropietario(Integer id_propietario) {
-        ArrayList<Inmueble> inmuebleList = new ArrayList<>();
-        try {
-            String sql = "SELECT * FROM inmueble WHERE activo=1 AND id_propietario="
-                    + id_propietario + " AND id_inmueble NOT IN (SELECT id_inmueble FROM contrato_inmueble WHERE activo=1)";
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ResultSet resultSet = ps.executeQuery();
-
-            Inmueble inmueble;
-            while (resultSet.next()) {
-                inmueble = new Inmueble();
-                inmueble.setId(resultSet.getInt("id_inmueble"));
-                inmueble.setPropietario(pd.obtenerPropietarioXId(resultSet.getInt("id_propietario")));
-                inmueble.setDireccion(resultSet.getString("direccion"));
-                inmueble.setZona(resultSet.getString("zona"));
-                inmueble.setEstadoInmueble(resultSet.getString("estado_inmueble"));
-                inmueble.setTipoInmueble(resultSet.getString("tipo_inmueble"));
-                inmueble.setPrecio(resultSet.getDouble("precio"));
-                inmueble.setSuperficie(resultSet.getDouble("superficie"));
-                inmuebleList.add(inmueble);
-            }
-            ps.close();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al obtener los Inmuebles LIBRES del propietario " + id_propietario + "\n" + ex);
-        }
-
-        return inmuebleList;
     }
 
     public boolean modificarInmueble(Inmueble inmu) {

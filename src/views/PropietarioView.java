@@ -5,7 +5,7 @@
 package views;
 
 import data.Conexion;
-import data.InmuebleData;
+import data.ContratoData;
 import data.PropietarioData;
 import entities.Inmueble;
 import entities.Propietario;
@@ -20,7 +20,7 @@ public class PropietarioView extends javax.swing.JDialog {
 
     Propietario propietario;
     PropietarioData propietarioData;
-    InmuebleData inmuebleData;
+    ContratoData contratoData;
 
     /**
      * Creates new form PropietarioView
@@ -35,14 +35,14 @@ public class PropietarioView extends javax.swing.JDialog {
         initComponents();
         propietario = new Propietario();
         propietarioData = new PropietarioData(conn);
-        inmuebleData = new InmuebleData(conn);
+        contratoData = new ContratoData(conn);
     }
     
     public PropietarioView(java.awt.Frame parent, boolean modal, Conexion conn, Propietario _propietario) {
         super(parent, modal);
         initComponents();
         propietarioData = new PropietarioData(conn);
-        inmuebleData = new InmuebleData(conn);
+        contratoData = new ContratoData(conn);
         
         this.propietario = _propietario;
         
@@ -53,8 +53,8 @@ public class PropietarioView extends javax.swing.JDialog {
         txfDomicilio.setText(propietario.getDomicilio());
         txfTelefono.setText(String.valueOf(propietario.getTelefono()));
                 
-        selectInmueblesAlquilados.setModel(new DefaultComboBoxModel(inmuebleData.ObtenerInmueblesAlquiladosXPropietario(propietario.getId()).toArray()));
-        selectInmueblesLibres.setModel(new DefaultComboBoxModel(inmuebleData.ObtenerInmueblesLibresXPropietario(propietario.getId()).toArray()));
+        selectInmueblesAlquilados.setModel(new DefaultComboBoxModel(contratoData.obtenerInmueblesAlquiladosXPropietario(propietario.getId()).toArray()));
+        selectInmueblesLibres.setModel(new DefaultComboBoxModel(contratoData.obtenerInmueblesLibresXPropietario(propietario.getId()).toArray()));
 
     }
     
