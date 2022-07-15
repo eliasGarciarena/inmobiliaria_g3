@@ -263,7 +263,7 @@ public class ContratoData {
         ArrayList<Inmueble> inmuebleList = new ArrayList<>();
         try {
             String sql="SELECT inmueble.* FROM contrato , inmueble WHERE \n" +
-            "inmueble.activo=1 AND inmueble.idInmueble AND inmueble.id_propietario=? NOT IN\n" +
+            "inmueble.activo=1 AND inmueble.id_propietario=? AND inmueble.idInmueble NOT IN\n" +
             "(SELECT inmueble.idInmueble FROM contrato , inmueble WHERE inmueble.idInmueble=contrato.idInmueble AND inmueble.activo = 1 AND contrato.finalizacion>?)";
             LocalDate fech= LocalDate.now();
             PreparedStatement ps = conn.prepareStatement(sql);
