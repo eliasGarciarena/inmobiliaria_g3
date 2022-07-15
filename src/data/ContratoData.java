@@ -58,12 +58,13 @@ public class ContratoData {
     }
     
     public ArrayList<Contrato_inmueble> obtenerContratos(){
-        ArrayList<Contrato_inmueble> contratos=null;
+        ArrayList<Contrato_inmueble> contratoList= new ArrayList<>();
         try{
             String sql="SELECT * FROM contrato_inmueble WHERE activo=1";
             PreparedStatement ps= conn.prepareStatement(sql);
             ResultSet rs=ps.executeQuery();
             Contrato_inmueble contra;
+
             while(rs.next()){
                 contra=new Contrato_inmueble();
                 contra.setId(rs.getInt("id_contrato"));
@@ -74,13 +75,13 @@ public class ContratoData {
                 contra.setMarca(rs.getString("marca"));
                 contra.setObservaciones(rs.getString("observaciones"));
                 contra.setActivo(rs.getBoolean("activo"));
-                contratos.add(contra);
+                contratoList.add(contra);
             }
             ps.close();
         }catch(Exception ex){
             JOptionPane.showMessageDialog(null,"ERROR al obtener todos los contratos:" +ex);
         }
-        return contratos;
+        return contratoList;
     }
     public Contrato_inmueble obtenerContratoXId(int id){
         Contrato_inmueble con=null;
