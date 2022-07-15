@@ -513,8 +513,11 @@ public class ContratoView extends javax.swing.JDialog {
             SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MM-yyyy");
             String fecha = formatoFecha.format(dtcInicio.getDate());
             con.setFechaInicio(LocalDate.parse(fecha, DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+            LocalDate f1=LocalDate.parse(fecha, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
             String fecha2 = formatoFecha.format(dtcFinal.getDate());
             con.setFechaFinal(LocalDate.parse(fecha2, DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+            LocalDate f2=LocalDate.parse(fecha2, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+            if(!f1.isAfter(f2)){
             if(rbtNuevo.isSelected()){
                 con.setMarca("Nuevo");
             }else{
@@ -527,6 +530,9 @@ public class ContratoView extends javax.swing.JDialog {
             con.setActivo(true);
             condata.agregarContrato(con);
             txfId.setText(con.getId()+"");
+            }else{
+                JOptionPane.showMessageDialog(this,"La fecha de final no puede ser anterior a la de inicio.");
+            }
         }catch(Exception ex){
             JOptionPane.showMessageDialog(this,"ERROR con los datos ingresados:"+ ex);
         }
