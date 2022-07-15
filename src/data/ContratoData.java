@@ -201,7 +201,7 @@ public class ContratoData {
         return inmuebles;
     }
     public ArrayList<Inmueble> InmueblesNoAlquilados(){
-        ArrayList<Inmueble> inmuebles=null;
+        ArrayList<Inmueble> inmuebles= new ArrayList<>();
         try{
             String sql="SELECT inmueble.* FROM contrato , inmueble WHERE \n" +
             "inmueble.activo=1 AND inmueble.idInmueble NOT IN\n" +

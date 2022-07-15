@@ -13,10 +13,15 @@ import data.PropietarioData;
 import entities.Contrato_inmueble;
 import entities.Inmueble;
 import entities.Inquilino;
+import entities.Propietario;
+
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
+
 import javax.swing.JOptionPane;
 /**
  *
@@ -25,21 +30,31 @@ import javax.swing.JOptionPane;
 public class ContratoView extends javax.swing.JDialog {
     private InquilinoData inquidata;
     private InmuebleData inmudata;
-    private PropietarioData pd;
-    private Inquilino inqui;
-    private Inmueble inmu1;
+    private PropietarioData propietarioData;
     private ContratoData condata;
+    
+    private Inquilino inqui;
+    private Inmueble inmu1;    
     private Contrato_inmueble con;
+    
+
+    private ArrayList<Inquilino> inquilinoList = new ArrayList<>();
+    private ArrayList<Propietario> propietarioList = new ArrayList<>();
+    private ArrayList<Inmueble> inmuebleLibresList = new ArrayList<>();
+
+    
+    //private Conexion conexion;
     /**
      * Creates new form ContratoView
      */
-    public ContratoView(java.awt.Frame parent,boolean modal,Inmueble inmu, Conexion conexion) {
+    
+    public ContratoView(java.awt.Frame parent,boolean modal,Inmueble inmu, Conexion _conexion) {
         super(parent, modal);
         initComponents();
-        inquidata=new InquilinoData(conexion);
-        inmudata=new InmuebleData(conexion);
-        pd=new PropietarioData(conexion);
-        condata=new ContratoData(conexion);
+        inquidata=new InquilinoData(_conexion);
+        inmudata=new InmuebleData(_conexion);
+        propietarioData=new PropietarioData(_conexion);
+        condata=new ContratoData(_conexion);
         con= new Contrato_inmueble();
         inqui=new Inquilino();
         inmu1=inmu;
@@ -65,6 +80,20 @@ public class ContratoView extends javax.swing.JDialog {
             cbxInquilino.addItem(con.getInqui());
             btnAlquilar.setEnabled(false);
         }
+    }
+    
+    public ContratoView(java.awt.Frame parent,boolean modal, Conexion _conexion) {
+        super(parent, modal);
+        initComponents();
+        inquidata=new InquilinoData(_conexion);
+        inmudata=new InmuebleData(_conexion);
+        propietarioData = new PropietarioData(_conexion);
+        condata = new ContratoData(_conexion);
+
+        inquilinoList = inquidata.obtenerInquilinos();
+        inmuebleLibresList = condata.InmueblesNoAlquilados();  
+                
+        cbxInquilino.setModel(new DefaultComboBoxModel(inquilinoList.toArray()));
     }
 
     /**
