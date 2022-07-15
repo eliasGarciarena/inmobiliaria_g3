@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package views;
 
 import java.util.ArrayList;
@@ -24,7 +20,7 @@ import javax.swing.JOptionPane;
 public class AppMain extends javax.swing.JFrame {
 
     /**
-     * Creates new form AppMain
+     * Crea nueva AppMain
      */
     Conexion conn = new Conexion();
 
@@ -51,7 +47,7 @@ public class AppMain extends javax.swing.JFrame {
         cargarTablaInquilinos();
         cargarTablaInmueble();
         cargarTablaPropietario();
-        
+
         btnAlquiler.setEnabled(false);
     }
 
@@ -66,14 +62,14 @@ public class AppMain extends javax.swing.JFrame {
         // Cargamos nuevos datos a la tabla
         for (Inquilino inquilinoAux : inquilinoList) {
             tableModel
-                    .insertRow(inquilinoList.indexOf(inquilinoAux), new Object[] {
-                            inquilinoAux.getId(),
-                            inquilinoAux.getNombre(),
-                            inquilinoAux.getApellido(),
-                            inquilinoAux.getDni(),
-                            inquilinoAux.getCuit(),
-                            inquilinoAux.getTelefono(),
-                            "VER" });
+                    .insertRow(inquilinoList.indexOf(inquilinoAux), new Object[]{
+                inquilinoAux.getId(),
+                inquilinoAux.getNombre(),
+                inquilinoAux.getApellido(),
+                inquilinoAux.getDni(),
+                inquilinoAux.getCuit(),
+                inquilinoAux.getTelefono(),
+                "VER"});
         }
     }
 
@@ -89,18 +85,18 @@ public class AppMain extends javax.swing.JFrame {
         // Cargamos nuevos datos a la tabla
         for (Inmueble inmuebleAux : inmuebleList) {
             tableModel
-                    .insertRow(inmuebleList.indexOf(inmuebleAux), new Object[] {
-                            // public Inmueble(int id, Propietario propietario, String direccion, String
-                            // zona, String tipoInmueble, String estadoInmueble, double precio, double
-                            // superficie, boolean activo) {
-                            inmuebleAux.getId(),
-                            inmuebleAux.getZona(),
-                            inmuebleAux.getDireccion(),
-                            inmuebleAux.getTipoInmueble(),
-                            inmuebleAux.getEstadoInmueble(),
-                            inmuebleAux.getSuperficie(),
-                            inmuebleAux.getPrecio(),
-                            "VER" });
+                    .insertRow(inmuebleList.indexOf(inmuebleAux), new Object[]{
+                // public Inmueble(int id, Propietario propietario, String direccion, String
+                // zona, String tipoInmueble, String estadoInmueble, double precio, double
+                // superficie, boolean activo) {
+                inmuebleAux.getId(),
+                inmuebleAux.getZona(),
+                inmuebleAux.getDireccion(),
+                inmuebleAux.getTipoInmueble(),
+                inmuebleAux.getEstadoInmueble(),
+                inmuebleAux.getSuperficie(),
+                inmuebleAux.getPrecio(),
+                "VER"});
         }
     }
 
@@ -116,17 +112,17 @@ public class AppMain extends javax.swing.JFrame {
         // Cargamos nuevos datos a la tabla
         for (Propietario propietarioAux : propietarioList) {
             tableModel
-                    .insertRow(propietarioList.indexOf(propietarioAux), new Object[] {
-                            // public Inmueble(int id, Propietario propietario, String direccion, String
-                            // zona, String tipoInmueble, String estadoInmueble, double precio, double
-                            // superficie, boolean activo) {
-                            propietarioAux.getId(),
-                            propietarioAux.getNombre(),
-                            propietarioAux.getApellido(),
-                            propietarioAux.getDni(),
-                            propietarioAux.getDomicilio(),
-                            propietarioAux.getTelefono(),
-                            "VER" });
+                    .insertRow(propietarioList.indexOf(propietarioAux), new Object[]{
+                // public Inmueble(int id, Propietario propietario, String direccion, String
+                // zona, String tipoInmueble, String estadoInmueble, double precio, double
+                // superficie, boolean activo) {
+                propietarioAux.getId(),
+                propietarioAux.getNombre(),
+                propietarioAux.getApellido(),
+                propietarioAux.getDni(),
+                propietarioAux.getDomicilio(),
+                propietarioAux.getTelefono(),
+                "VER"});
         }
     }
 
@@ -180,8 +176,8 @@ public class AppMain extends javax.swing.JFrame {
         rbtnInquilinoTodos = new javax.swing.JRadioButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
+        txfBuscarInquilino = new javax.swing.JTextField();
+        btnBuscarInquilino = new javax.swing.JButton();
         jComboBox2 = new javax.swing.JComboBox<>();
         jPanel4 = new javax.swing.JPanel();
         btnAgregarPropietario = new javax.swing.JButton();
@@ -192,7 +188,7 @@ public class AppMain extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Inciio");
+        jLabel1.setText("Inicio");
 
         javax.swing.GroupLayout jPanelInicioLayout = new javax.swing.GroupLayout(jPanelInicio);
         jPanelInicio.setLayout(jPanelInicioLayout);
@@ -312,7 +308,7 @@ public class AppMain extends javax.swing.JFrame {
             }
         });
 
-        selectBuscarInmueble.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Buscar por ID", "Buscar por Zona", "Buscar por Propietario", "Buscar por Precio Menor" }));
+        selectBuscarInmueble.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Buscar por ID", "Buscar por DNI Propietario" }));
 
         btnLimpiarBuscarInmueble.setText("Limpiar");
         btnLimpiarBuscarInmueble.setEnabled(false);
@@ -327,25 +323,27 @@ public class AppMain extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(selectBuscarInmueble, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(btnBuscarInmueble, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnLimpiarBuscarInmueble, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(txfBuscarInmueble, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(36, 36, 36)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(selectBuscarInmueble, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(btnBuscarInmueble, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnLimpiarBuscarInmueble, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txfBuscarInmueble, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(92, 92, 92)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(selectBuscarInmueble, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -377,9 +375,8 @@ public class AppMain extends javax.swing.JFrame {
                     .addGroup(JPanelInmueblesLayout.createSequentialGroup()
                         .addGap(404, 404, 404)
                         .addComponent(btnAgregarInmueble, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 128, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(JPanelInmueblesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnAlquiler)
@@ -392,11 +389,11 @@ public class AppMain extends javax.swing.JFrame {
                     .addGroup(JPanelInmueblesLayout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addComponent(btnAgregarInmueble)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanelInmueblesLayout.createSequentialGroup()
-                        .addContainerGap(31, Short.MAX_VALUE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(JPanelInmueblesLayout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
@@ -512,26 +509,37 @@ public class AppMain extends javax.swing.JFrame {
 
         jLabel5.setText("Buscar Inquilino");
 
-        jButton4.setText("Buscar");
+        btnBuscarInquilino.setText("Buscar");
+        btnBuscarInquilino.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarInquilinoActionPerformed(evt);
+            }
+        });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Buscar por ID", "Buscar por Dni", "Buscar por Nombre", "Buscar por Apellido" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Buscar por ID", "Buscar por DNI" }));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(72, 72, 72)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(52, 52, 52))
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(36, 36, 36)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txfBuscarInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(56, 56, 56)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(96, 96, 96)
+                        .addComponent(btnBuscarInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -542,9 +550,9 @@ public class AppMain extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txfBuscarInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4)
+                .addComponent(btnBuscarInquilino)
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
@@ -560,9 +568,8 @@ public class AppMain extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(372, 372, 372)
                         .addComponent(btnAgregarInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 128, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(jScrollPane2)
         );
         jPanel3Layout.setVerticalGroup(
@@ -572,11 +579,11 @@ public class AppMain extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addComponent(btnAgregarInquilino)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -695,16 +702,29 @@ public class AppMain extends javax.swing.JFrame {
 
     private void btnAlquilerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlquilerActionPerformed
         // TODO add your handling code here:
-        Inmueble inmu=new Inmueble();
-        try{
-        int id =(int) tablaInmuebles.getValueAt(tablaInmuebles.getSelectedRow(), 0);
-        inmu= inmuebleData.obtenerInmuebleXId(id);
-        }catch(Exception ex){
-            JOptionPane.showMessageDialog(this,"" +ex);
+        Inmueble inmu = new Inmueble();
+        try {
+            int id = (int) tablaInmuebles.getValueAt(tablaInmuebles.getSelectedRow(), 0);
+            inmu = inmuebleData.obtenerInmuebleXId(id);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "" + ex);
         }
-        ContratoView con=new ContratoView(this,true,inmu,conn);
+        ContratoView con = new ContratoView(this, true, inmu, conn);
         con.setVisible(true);
     }//GEN-LAST:event_btnAlquilerActionPerformed
+
+    private void btnBuscarInquilinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarInquilinoActionPerformed
+        // TODO add your handling code here:
+        try{
+            int value = Integer.parseInt(txfBuscarInquilino.getText());
+        } catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "ERROR: Valores invalidos\n" + ex);
+        }
+    }//GEN-LAST:event_btnBuscarInquilinoActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void tablaPropietariosMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_tablaPropietariosMouseClicked
         // TODO add your handling code here:
@@ -759,7 +779,7 @@ public class AppMain extends javax.swing.JFrame {
             InmuebleView inmuebleView = new InmuebleView(this, true, conn, inmuebleList.get(fila).getId());
             inmuebleView.setVisible(true);
         }
-        if(tablaInmuebles.getSelectedColumn()>-1){
+        if (tablaInmuebles.getSelectedColumn() > -1) {
             btnAlquiler.setEnabled(true);
         }
     }// GEN-LAST:event_tablaInmueblesMouseClicked
@@ -772,74 +792,47 @@ public class AppMain extends javax.swing.JFrame {
 
     private void btnBuscarInmuebleActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnBuscarInmuebleActionPerformed
         // TODO add your handling code here:
-        ArrayList<Inmueble> listAux = new ArrayList<>(inmuebleList);
-        inmuebleList.clear();
-        String selectValue = selectBuscarInmueble.getSelectedItem().toString();
-        String value = txfBuscarInmueble.getText();
-        switch (selectValue) {
-            case "Buscar por ID":
-                try {
-                    Inmueble inmueble = inmuebleData.obtenerInmuebleXId(Integer.parseInt(value));
-                    if (inmueble != null) {
-                        inmuebleList.add(inmueble);
-                        cargarTablaInmueble();
-                    } else {
-                        JOptionPane.showMessageDialog(null, "No se encuentra el id ingresado");
+        try {
+            int value = Integer.parseInt(txfBuscarInmueble.getText());
+            ArrayList<Inmueble> listAux = new ArrayList<>(inmuebleList);
+            inmuebleList.clear();
+            String selectValue = selectBuscarInmueble.getSelectedItem().toString();
+            switch (selectValue) {
+                case "Buscar por ID":
+                    try {
+                        Inmueble inmueble = inmuebleData.obtenerInmuebleXId(value);
+                        if (inmueble != null) {
+                            inmuebleList.add(inmueble);
+                            cargarTablaInmueble();
+                        } else {
+                            JOptionPane.showMessageDialog(null, "No se encuentra el ID ingresado");
+                        }
+
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "Valor incorrecto\n" + e);
                     }
 
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "Valor incorrecto");
-                }
-
-                break;
-            case "Buscar por Zona":
-                for (Inmueble inmuebleAux : listAux) {
-                    if (inmuebleAux.getZona().equalsIgnoreCase(value)) {
-                        inmuebleList.add(inmuebleAux);
-                    }
-                }
-                if (inmuebleList.size() != 0) {
-                    cargarTablaInmueble();
-                } else {
-                    JOptionPane.showMessageDialog(null, "No se encuentro ningun inmueble en esa zona");
-                }
-                break;
-            case "Buscar por Propietario":
-                for (Inmueble inmuebleAux : listAux) {
-                    if (inmuebleAux.getPropietario().getNombre().equalsIgnoreCase(value)
-                            || inmuebleAux.getPropietario().getApellido().equalsIgnoreCase(value)) {
-                        inmuebleList.add(inmuebleAux);
-                    }
-                }
-                if (inmuebleList.size() != 0) {
-                    cargarTablaInmueble();
-                } else {
-                    JOptionPane.showMessageDialog(null, "No se encuentro ningun inmueble con ese nombre o apellido");
-                }
-                break;
-
-            case "Buscar por Precio Menor":
-                try {
+                    break;
+                case "Buscar por DNI Propietario":
                     for (Inmueble inmuebleAux : listAux) {
-                        if (inmuebleAux.getPrecio() <= Integer.parseInt(value)) {
+                        if (inmuebleAux.getPropietario().getDni() == value) {
                             inmuebleList.add(inmuebleAux);
                         }
                     }
                     if (inmuebleList.size() != 0) {
                         cargarTablaInmueble();
                     } else {
-                        JOptionPane.showMessageDialog(null,
-                                "No se encuentro ningun inmueble con precio menor a " + value);
+                        JOptionPane.showMessageDialog(null, "No se encontro ningun Inmueble con esos datos");
                     }
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "Valor incorrecto");
-                }
-                break;
-            default:
-                throw new AssertionError();
+                    break;
+                default:
+                    throw new AssertionError();
+            }
+            btnLimpiarBuscarInmueble.setEnabled(true);
+            inmuebleList = listAux;
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "ERROR: Valores invalidos\n" + ex);
         }
-        btnLimpiarBuscarInmueble.setEnabled(true);
-        inmuebleList = listAux;
     }// GEN-LAST:event_btnBuscarInmuebleActionPerformed
 
     private void tablaInquilinosMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_tablaInquilinosMouseClicked
@@ -930,11 +923,11 @@ public class AppMain extends javax.swing.JFrame {
     private javax.swing.JButton btnAgregarPropietario;
     private javax.swing.JButton btnAlquiler;
     private javax.swing.JButton btnBuscarInmueble;
+    private javax.swing.JButton btnBuscarInquilino;
     private javax.swing.ButtonGroup btnGrupInmueble;
     private javax.swing.ButtonGroup btnGrupInquilinos;
     private javax.swing.JButton btnLimpiarBuscarInmueble;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -953,7 +946,6 @@ public class AppMain extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane6;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JRadioButton rbtnInmueblesAlquilados;
     private javax.swing.JRadioButton rbtnInmueblesLibres;
     private javax.swing.JRadioButton rbtnInmueblesTodos;
@@ -965,5 +957,6 @@ public class AppMain extends javax.swing.JFrame {
     private javax.swing.JTable tablaInquilinos;
     private javax.swing.JTable tablaPropietarios;
     private javax.swing.JTextField txfBuscarInmueble;
+    private javax.swing.JTextField txfBuscarInquilino;
     // End of variables declaration//GEN-END:variables
 }

@@ -17,7 +17,6 @@ public class Inmueble {
     private String estadoInmueble;
     private double precio;
     private double superficie;
-    private boolean disponibilidad;
     private boolean activo;
 
 
@@ -33,7 +32,6 @@ public class Inmueble {
         this.estadoInmueble = estadoInmueble;
         this.precio = precio;
         this.superficie = superficie;
-        this.disponibilidad = disponibilidad;
         this.activo = activo;
         
     }
@@ -46,7 +44,6 @@ public class Inmueble {
         this.estadoInmueble = estadoInmueble;
         this.precio = precio;
         this.superficie = superficie;
-        this.disponibilidad = disponibilidad;
         this.activo = activo;
     }        
 
@@ -122,16 +119,6 @@ public class Inmueble {
         this.activo = activo;
     }
 
-    public boolean getDisponibilidad() {
-        return disponibilidad;
-    }
-
-    public void setDisponibilidad(boolean disponibilidad) {
-        this.disponibilidad = disponibilidad;
-    }
-
-    
-    
     @Override
     public String toString() {
         return getId() + " - " + getDireccion();

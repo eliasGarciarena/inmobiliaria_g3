@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-07-2022 a las 01:14:18
+-- Tiempo de generación: 15-07-2022 a las 10:24:29
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -35,8 +35,15 @@ CREATE TABLE `contrato_inmueble` (
   `fecha_final` date NOT NULL,
   `marca` varchar(200) NOT NULL,
   `observaciones` varchar(300) NOT NULL,
-  `activo` tinyint(1) NOT NULL
+  `activo` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `contrato_inmueble`
+--
+
+INSERT INTO `contrato_inmueble` (`id_contrato`, `id_inquilino`, `id_inmueble`, `fecha_inicio`, `fecha_final`, `marca`, `observaciones`, `activo`) VALUES
+(1, 3, 1, '2022-07-01', '2022-07-15', 'Nuevo', 'primer alquiler', 1);
 
 -- --------------------------------------------------------
 
@@ -53,8 +60,17 @@ CREATE TABLE `inmueble` (
   `tipo_inmueble` varchar(200) NOT NULL,
   `precio` double NOT NULL,
   `superficie` double NOT NULL,
-  `activo` tinyint(1) NOT NULL
+  `activo` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `inmueble`
+--
+
+INSERT INTO `inmueble` (`id_inmueble`, `id_propietario`, `direccion`, `zona`, `estado_inmueble`, `tipo_inmueble`, `precio`, `superficie`, `activo`) VALUES
+(1, 1, 'Boulevard Of Broken Dreams 2400', 'La Matanza', 'Nuevo', 'Casa', 250000, 50, 1),
+(2, 3, 'Newbery 205', 'Pringles', 'Nuevo', 'Casa', 25000, 25, 1),
+(3, 3, 'Cualquiera 231', 'Lanus', 'Nuevo', 'Casa', 25675, 39, 1);
 
 -- --------------------------------------------------------
 
@@ -72,8 +88,16 @@ CREATE TABLE `inquilino` (
   `nombre_Garante` varchar(200) NOT NULL,
   `apellido_garante` varchar(200) NOT NULL,
   `dni_garante` bigint(20) NOT NULL,
-  `activo` tinyint(1) NOT NULL
+  `activo` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `inquilino`
+--
+
+INSERT INTO `inquilino` (`id_inquilino`, `nombre`, `apellido`, `dni`, `cuit`, `telefono`, `nombre_Garante`, `apellido_garante`, `dni_garante`, `activo`) VALUES
+(3, 'Jon', 'Sistiaga', 23456238, 20234562387, 2657695849, 'Pedro', 'Sanchez', 38476532, 1),
+(4, 'Sentado', 'By', 47564739, 20475647397, 11872635789, 'Elias', 'Garciarena', 41773891, 1);
 
 -- --------------------------------------------------------
 
@@ -88,8 +112,16 @@ CREATE TABLE `propietario` (
   `dni` bigint(20) NOT NULL,
   `domicilio` varchar(400) NOT NULL,
   `telefono` bigint(20) NOT NULL,
-  `activo` tinyint(1) NOT NULL
+  `activo` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `propietario`
+--
+
+INSERT INTO `propietario` (`id_propietario`, `nombre`, `apellido`, `dni`, `domicilio`, `telefono`, `activo`) VALUES
+(1, 'Noel', 'Gallagher', 41773892, 'Manchester City, England', 447635457829, 1),
+(3, 'Luis', 'Brandoni', 48736289, 'Calle Ficticia 829', 2664564723, 1);
 
 --
 -- Índices para tablas volcadas
@@ -132,25 +164,25 @@ ALTER TABLE `propietario`
 -- AUTO_INCREMENT de la tabla `contrato_inmueble`
 --
 ALTER TABLE `contrato_inmueble`
-  MODIFY `id_contrato` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_contrato` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `inmueble`
 --
 ALTER TABLE `inmueble`
-  MODIFY `id_inmueble` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_inmueble` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `inquilino`
 --
 ALTER TABLE `inquilino`
-  MODIFY `id_inquilino` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_inquilino` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `propietario`
 --
 ALTER TABLE `propietario`
-  MODIFY `id_propietario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_propietario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas
@@ -173,4 +205,3 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-inquilinoinmueble
