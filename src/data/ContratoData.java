@@ -231,9 +231,11 @@ public class ContratoData {
     public ArrayList<Inmueble> obtenerInmueblesAlquiladosXPropietario(Integer id_propietario) {
         ArrayList<Inmueble> inmuebleList = new ArrayList<>();
         try {
-            String sql = "SELECT * FROM inmueble WHERE activo=1 AND id_propietario="
-                    + id_propietario + " AND id_inmueble IN (SELECT id_inmueble FROM contrato_inmueble WHERE activo=1)";
+            String sql="SELECT inmueble.* FROM contrato , inmueble WHERE inmueble.idInmueble=contrato.idInmueble AND inmueble.activo = 1 AND inmueble.id_propietario=? AND contrato.finalizacion>?";
+            LocalDate fech= LocalDate.now();
             PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, id_propietario);
+            ps.setDate(2, Date.valueOf(fech));
             ResultSet resultSet = ps.executeQuery();
 
             Inmueble inmueble;
@@ -260,9 +262,13 @@ public class ContratoData {
     public ArrayList<Inmueble> obtenerInmueblesLibresXPropietario(Integer id_propietario) {
         ArrayList<Inmueble> inmuebleList = new ArrayList<>();
         try {
-            String sql = "SELECT * FROM inmueble WHERE activo=1 AND id_propietario="
-                    + id_propietario + " AND id_inmueble NOT IN (SELECT id_inmueble FROM contrato_inmueble WHERE activo=1)";
+            String sql="SELECT inmueble.* FROM contrato , inmueble WHERE \n" +
+            "inmueble.activo=1 AND inmueble.idInmueble AND inmueble.id_propietario=? NOT IN\n" +
+            "(SELECT inmueble.idInmueble FROM contrato , inmueble WHERE inmueble.idInmueble=contrato.idInmueble AND inmueble.activo = 1 AND contrato.finalizacion>?)";
+            LocalDate fech= LocalDate.now();
             PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, id_propietario);
+            ps.setDate(2, Date.valueOf(fech));
             ResultSet resultSet = ps.executeQuery();
 
             Inmueble inmueble;
