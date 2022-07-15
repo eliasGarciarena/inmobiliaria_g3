@@ -1074,6 +1074,7 @@ public class AppMain extends javax.swing.JFrame {
     private void rbtnInmueblesTodosActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_rbtnInmueblesTodosActionPerformed
         // TODO add your handling code here:
         if (rbtnInmueblesTodos.isSelected()) {
+            inmuebleList.clear();
             inmuebleList = inmuebleData.ObtenerInmuebles();
             cargarTablaInmueble();
         }
@@ -1082,6 +1083,7 @@ public class AppMain extends javax.swing.JFrame {
     private void rbtnInmueblesLibresActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_rbtnInmueblesLibresActionPerformed
         // TODO add your handling code here:
         if (rbtnInmueblesLibres.isSelected()) {
+            inmuebleList.clear();
             inmuebleList = contratoData.InmueblesNoAlquilados();
             cargarTablaInmueble();
         }

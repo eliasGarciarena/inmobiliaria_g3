@@ -29,6 +29,7 @@ public class ContratoData {
         conn=conexion.getConexion();
         inquidata=new InquilinoData(conexion);
         inmudata=new InmuebleData(conexion);
+        pd=new PropietarioData(conexion);
     }
     
     
@@ -177,7 +178,7 @@ public class ContratoData {
     public ArrayList<Inmueble> InmueblesAlquilados(){
         ArrayList<Inmueble> inmuebles=null;
         try{
-            String sql="SELECT inmueble.* FROM contrato , inmueble WHERE inmueble.idInmueble=contrato.idInmueble AND inmueble.activo = 1 AND contrato.finalizacion>?";
+            String sql="SELECT inmueble.* FROM contrato_inmueble , inmueble WHERE inmueble.id_inmueble=contrato_inmueble.id_inmueble AND inmueble.activo = 1 AND contrato_inmueble.fecha_final>?";
             LocalDate fech= LocalDate.now();
             PreparedStatement ps=conn.prepareStatement(sql);
             ps.setDate(1, Date.valueOf(fech));
@@ -194,6 +195,7 @@ public class ContratoData {
                 inmu.setPrecio(rs.getDouble("precio"));
                 inmu.setSuperficie(rs.getDouble("superficie"));
                 inmu.setActivo(rs.getBoolean("Activo"));
+                inmuebles.add(inmu);
             }
         }catch(Exception ex){
             JOptionPane.showMessageDialog(null,"ERROR al traer los inmuebles alquilados al dia:"+ ex);
@@ -203,9 +205,9 @@ public class ContratoData {
     public ArrayList<Inmueble> InmueblesNoAlquilados(){
         ArrayList<Inmueble> inmuebles= new ArrayList<>();
         try{
-            String sql="SELECT inmueble.* FROM contrato , inmueble WHERE \n" +
-            "inmueble.activo=1 AND inmueble.idInmueble NOT IN\n" +
-            "(SELECT inmueble.idInmueble FROM contrato , inmueble WHERE inmueble.idInmueble=contrato.idInmueble AND inmueble.activo = 1 AND contrato.finalizacion>?)";
+            String sql="SELECT inmueble.* FROM inmueble WHERE \n" +
+            "inmueble.activo=1 AND inmueble.id_inmueble NOT IN\n" +
+            "(SELECT inmueble.id_inmueble FROM contrato_inmueble , inmueble WHERE inmueble.id_inmueble=contrato_inmueble.id_inmueble AND inmueble.activo = 1 AND contrato_inmueble.fecha_final>?)";
             LocalDate fech= LocalDate.now();
             PreparedStatement ps=conn.prepareStatement(sql);
             ps.setDate(1, Date.valueOf(fech));
@@ -222,6 +224,7 @@ public class ContratoData {
                 inmu.setPrecio(rs.getDouble("precio"));
                 inmu.setSuperficie(rs.getDouble("superficie"));
                 inmu.setActivo(rs.getBoolean("Activo"));
+                inmuebles.add(inmu);
             }
         }catch(Exception ex){
             JOptionPane.showMessageDialog(null,"ERROR al traer los inmuebles No alquilados:"+ ex);
