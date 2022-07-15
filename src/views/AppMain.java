@@ -233,6 +233,11 @@ public class AppMain extends javax.swing.JFrame {
         btnAgregarContrato = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         tablaContratos = new javax.swing.JTable();
+        jPanel10 = new javax.swing.JPanel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        txfIDContrato = new javax.swing.JTextField();
+        btnBuscarContrato = new javax.swing.JButton();
+        btnActualizarContrato = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -301,7 +306,7 @@ public class AppMain extends javax.swing.JFrame {
                         .addComponent(lblTotalPropietario, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(61, 61, 61)
                         .addComponent(lblContratosVigentes, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(245, Short.MAX_VALUE))
+                .addContainerGap(264, Short.MAX_VALUE))
         );
 
         jTabbedPane6.addTab("Inicio", jPanelInicio);
@@ -494,7 +499,7 @@ public class AppMain extends javax.swing.JFrame {
                 .addGroup(JPanelInmueblesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(JPanelInmueblesLayout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE))
                     .addGroup(JPanelInmueblesLayout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addComponent(btnAgregarInmueble)
@@ -697,7 +702,7 @@ public class AppMain extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addComponent(btnAgregarInquilino)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnActualizarTablaInquilinos)))
@@ -868,22 +873,82 @@ public class AppMain extends javax.swing.JFrame {
             tablaContratos.getColumnModel().getColumn(6).setResizable(false);
         }
 
+        jPanel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bucar por ID" }));
+
+        btnBuscarContrato.setText("Buscar");
+        btnBuscarContrato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarContratoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap(60, Short.MAX_VALUE)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jComboBox1, 0, 158, Short.MAX_VALUE)
+                            .addComponent(txfIDContrato))
+                        .addGap(56, 56, 56))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+                        .addComponent(btnBuscarContrato)
+                        .addGap(99, 99, 99))))
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap(14, Short.MAX_VALUE)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txfIDContrato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnBuscarContrato))
+        );
+
+        btnActualizarContrato.setText("Actualizar Contratos");
+        btnActualizarContrato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarContratoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1119, Short.MAX_VALUE)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(477, 477, 477)
-                .addComponent(btnAgregarContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(477, 477, 477)
+                        .addComponent(btnAgregarContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnActualizarContrato)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap(101, Short.MAX_VALUE)
-                .addComponent(btnAgregarContrato)
-                .addGap(47, 47, 47)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                        .addComponent(btnActualizarContrato)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAgregarContrato))
+                        .addGap(47, 47, 47)))
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -906,7 +971,32 @@ public class AppMain extends javax.swing.JFrame {
     private void btnAgregarContratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarContratoActionPerformed
         // TODO add your handling code here:
         ContratoView contratoView = new ContratoView(this, true, conn);
+        contratoView.setVisible(true);
     }//GEN-LAST:event_btnAgregarContratoActionPerformed
+
+    private void btnBuscarContratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarContratoActionPerformed
+        // TODO add your handling code here:
+        try{
+            int id=Integer.parseInt(txfIDContrato.getText());
+            Contrato_inmueble contrato=contratoData.obtenerContratoXId(id);
+            contratoList.clear();
+            if (contrato != null) {
+            contratoList.add(contrato);
+            cargarTablaContratos();
+            } else {
+            JOptionPane.showMessageDialog(null, "No se encuentra el ID ingresado");
+            }
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(this,"Error con la busqueda por id:" +ex);
+        }
+    }//GEN-LAST:event_btnBuscarContratoActionPerformed
+
+    private void btnActualizarContratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarContratoActionPerformed
+        // TODO add your handling code here:
+        contratoList.clear();
+        contratoList=contratoData.obtenerContratos();
+        cargarTablaContratos();
+    }//GEN-LAST:event_btnActualizarContratoActionPerformed
 
     private void btnAgregarPropietarioActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAgregarPropietarioActionPerformed
         // TODO add your handling code here:
@@ -1153,6 +1243,7 @@ public class AppMain extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel JPanelInmuebles;
+    private javax.swing.JButton btnActualizarContrato;
     private javax.swing.JButton btnActualizarTablaInmueble;
     private javax.swing.JButton btnActualizarTablaInquilinos;
     private javax.swing.JButton btnActualizarTablaPropietario;
@@ -1161,11 +1252,13 @@ public class AppMain extends javax.swing.JFrame {
     private javax.swing.JButton btnAgregarInquilino;
     private javax.swing.JButton btnAgregarPropietario;
     private javax.swing.JButton btnAlquiler;
+    private javax.swing.JButton btnBuscarContrato;
     private javax.swing.JButton btnBuscarInmueble;
     private javax.swing.JButton btnBuscarInquilino;
     private javax.swing.ButtonGroup btnGrupInmueble;
     private javax.swing.ButtonGroup btnGrupInquilinos;
     private javax.swing.JButton btnLimpiarBuscarInmueble;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -1177,6 +1270,7 @@ public class AppMain extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1209,5 +1303,6 @@ public class AppMain extends javax.swing.JFrame {
     private javax.swing.JTable tablaPropietarios;
     private javax.swing.JTextField txfBuscarInmueble;
     private javax.swing.JTextField txfBuscarInquilino;
+    private javax.swing.JTextField txfIDContrato;
     // End of variables declaration//GEN-END:variables
 }

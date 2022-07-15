@@ -48,6 +48,22 @@ public class ContratoView extends javax.swing.JDialog {
      * Creates new form ContratoView
      */
     
+     public ContratoView(java.awt.Frame parent,boolean modal, Conexion _conexion) {
+        super(parent, modal);
+        initComponents();
+        inquidata=new InquilinoData(_conexion);
+        inmudata=new InmuebleData(_conexion);
+        propietarioData=new PropietarioData(_conexion);
+        condata=new ContratoData(_conexion);
+        con= new Contrato_inmueble();
+        inqui=new Inquilino();
+        txaDomicilio.setLineWrap(true);
+        txaDomicilio.setWrapStyleWord(true);
+        txaObservaciones.setLineWrap(true);
+        btnActualizar.setEnabled(false);
+        btnBorrar.setEnabled(false);
+     }
+     
     public ContratoView(java.awt.Frame parent,boolean modal,Inmueble inmu, Conexion _conexion) {
         super(parent, modal);
         initComponents();
@@ -82,7 +98,7 @@ public class ContratoView extends javax.swing.JDialog {
         }
     }
     
-    public ContratoView(java.awt.Frame parent,boolean modal, Conexion _conexion) {
+    /*public ContratoView(java.awt.Frame parent,boolean modal, Conexion _conexion) {
         super(parent, modal);
         initComponents();
         inquidata=new InquilinoData(_conexion);
@@ -94,7 +110,7 @@ public class ContratoView extends javax.swing.JDialog {
         inmuebleLibresList = condata.InmueblesNoAlquilados();  
                 
         cbxInquilino.setModel(new DefaultComboBoxModel(inquilinoList.toArray()));
-    }
+    }*/
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -128,6 +144,7 @@ public class ContratoView extends javax.swing.JDialog {
         txaDomicilio = new javax.swing.JTextArea();
         cbxTipo = new javax.swing.JComboBox<>();
         txfIdInmueble = new javax.swing.JTextField();
+        btnBuscarInmuId = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -171,6 +188,13 @@ public class ContratoView extends javax.swing.JDialog {
         txaDomicilio.setRows(5);
         jScrollPane1.setViewportView(txaDomicilio);
 
+        btnBuscarInmuId.setText("Buscar");
+        btnBuscarInmuId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarInmuIdActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -187,7 +211,10 @@ public class ContratoView extends javax.swing.JDialog {
                     .addComponent(jLabel11))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txfIdInmueble, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txfIdInmueble, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnBuscarInmuId))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(cbxTipo, 0, 155, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -200,14 +227,15 @@ public class ContratoView extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(txfIdInmueble, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(txfIdInmueble, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscarInmuId))
+                .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(cbxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(12, Short.MAX_VALUE))
+                        .addContainerGap(22, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -445,7 +473,7 @@ public class ContratoView extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 4, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnSalir))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -463,10 +491,19 @@ public class ContratoView extends javax.swing.JDialog {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
+        try{
         cbxInquilino.removeAllItems();
         long dni=Long.parseLong(txfDniInquilino.getText());
         inqui=inquidata.obtenerInquilinoXDni(dni);
-        cbxInquilino.addItem(inqui);
+        if(inqui!=null){
+            cbxInquilino.addItem(inqui);
+        }else{
+            JOptionPane.showMessageDialog(this,"No se encontro ningun inquilino con ese dni");
+        }
+
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(this,"ERROR al buscar inquilino con dni:"+ ex);
+        }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnAlquilarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlquilarActionPerformed
@@ -550,12 +587,31 @@ public class ContratoView extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnBorrarActionPerformed
 
+    private void btnBuscarInmuIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarInmuIdActionPerformed
+        // TODO add your handling code here:
+        try{
+            int id= Integer.parseInt(txfIdInmueble.getText());
+            inmu1=inmudata.obtenerInmuebleXId(id);
+            if(inmu1!=null){
+                txaDomicilio.setText(inmu1.getDireccion());
+                cbxTipo.removeAllItems();
+                cbxTipo.addItem(inmu1.getTipoInmueble());
+            }else{
+                JOptionPane.showMessageDialog(null,"No se encuentraningun inmueble con ese id");
+            }
+                
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(this,"ERROR al intentar traer inmueble por id:"+ ex);
+        }
+    }//GEN-LAST:event_btnBuscarInmuIdActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnAlquilar;
     private javax.swing.JButton btnBorrar;
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnBuscarInmuId;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnSalir;
     private javax.swing.ButtonGroup buttonGroup1;
