@@ -28,7 +28,7 @@ public class InmuebleData {
     }
 
     public boolean AgregarInmueble(Inmueble inmueble) {
-        String querySql = "INSERT INTO inmueble (id_propietario, direccion, zona, estado_inmueble, tipo_inmueble, precio, superficie,disponibilidad)  VALUES (?,?,?,?,?,?,?,?,?)";
+        String querySql = "INSERT INTO inmueble (id_propietario, direccion, zona, estado_inmueble, tipo_inmueble, precio, superficie,disponibilidad,activo)  VALUES (?,?,?,?,?,?,?,?,?)";
 
         boolean insert = true;
         try {
@@ -41,6 +41,7 @@ public class InmuebleData {
             ps.setDouble(6, inmueble.getPrecio());
             ps.setDouble(7, inmueble.getSuperficie());
             ps.setBoolean(8, inmueble.getDisponibilidad());
+            ps.setBoolean(9,true);
             ps.executeUpdate();
 
             // Obtenemos el id asignado por la base de datos
@@ -243,7 +244,7 @@ public class InmuebleData {
     public boolean modificarInmueble(Inmueble inmu) {
         boolean modi = false;
         try {
-            String sql = "UPDATE inmueble SET id_propietario=?,direccion=?,zona=?,estado_inmueble=?,tipo_inmueble=?,precio=?,superficie=?,disponibilidad,activo=? WHERE id_inmueble=?";
+            String sql = "UPDATE inmueble SET id_propietario=?,direccion=?,zona=?,estado_inmueble=?,tipo_inmueble=?,precio=?,superficie=?,disponibilidad=?,activo=? WHERE id_inmueble=?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, inmu.getPropietario().getId());
             ps.setString(2, inmu.getDireccion());

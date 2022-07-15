@@ -41,6 +41,8 @@ public class InmuebleView extends javax.swing.JDialog {
         propietarioData = new PropietarioData(conn);
         propietarioList = propietarioData.obtenerPropietarios();
         selectPropietario.setModel(new DefaultComboBoxModel(propietarioList.toArray()));
+        btnActualizar.setEnabled(false);
+        btnBorrar.setEnabled(false);
     }
 
     public InmuebleView(java.awt.Frame parent, boolean modal, Conexion conn, Integer Id) {
@@ -65,6 +67,9 @@ public class InmuebleView extends javax.swing.JDialog {
         } else {
             rbtnAlquilado.setSelected(true);
         }
+        btnActualizar.setEnabled(true);
+        btnBorrar.setEnabled(true);
+        btnGuardar.setEnabled(false);
     }
 
     /**
@@ -330,14 +335,39 @@ public class InmuebleView extends javax.swing.JDialog {
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnBorrarActionPerformed
         // TODO add your handling code here:
+        try{
+            int id=Integer.parseInt(txfId.getText());
+            inmuebleData.borrarInmueble(id);
+        }catch(Exception ex){
+            
+        }
     }// GEN-LAST:event_btnBorrarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnLimpiarActionPerformed
         // TODO add your handling code here:
+        txfDireccion.setText("");
+        txfPrecio.setText("");
+        txfZona.setText("");
+        txtSuperficie.setText("");
     }// GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnActualizarActionPerformed
         // TODO add your handling code here:
+        try{
+            inmueble.setId(Integer.parseInt(txfId.getText()));
+            inmueble.setPropietario((Propietario) selectPropietario.getSelectedItem());
+            inmueble.setDireccion(txfDireccion.getText());
+            inmueble.setZona(txfZona.getText());
+            inmueble.setTipoInmueble(selectTipoInmueble.getSelectedItem().toString());
+            inmueble.setEstadoInmueble(selectEstadoInmueble.getSelectedItem().toString());
+            inmueble.setPrecio(Double.parseDouble(txfPrecio.getText()));
+            inmueble.setSuperficie(Double.parseDouble(txtSuperficie.getText()));
+            inmueble.setDisponibilidad(rbtnLibre.isSelected());
+            inmuebleData.modificarInmueble(inmueble);
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Revise el formato de los datos ingresados:\n" + ex,
+                    "Error al Modificar los datos", JOptionPane.WARNING_MESSAGE);
+        }
     }// GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnGuardarActionPerformed

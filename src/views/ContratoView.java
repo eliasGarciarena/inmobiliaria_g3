@@ -476,6 +476,8 @@ public class ContratoView extends javax.swing.JDialog {
         txfDniInquilino.setText("");
         cbxInquilino.removeAllItems();
         btnAlquilar.setEnabled(true);
+        btnActualizar.setEnabled(false);
+        btnBorrar.setEnabled(false);
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
