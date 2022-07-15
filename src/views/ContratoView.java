@@ -592,6 +592,8 @@ public class ContratoView extends javax.swing.JDialog {
         try{
             int id= Integer.parseInt(txfIdInmueble.getText());
             inmu1=inmudata.obtenerInmuebleXId(id);
+            con=condata.obtenerContratoXInmuebleId(id);
+            LocalDate fech=LocalDate.now();
             if(inmu1!=null){
                 txaDomicilio.setText(inmu1.getDireccion());
                 cbxTipo.removeAllItems();
@@ -599,7 +601,11 @@ public class ContratoView extends javax.swing.JDialog {
             }else{
                 JOptionPane.showMessageDialog(null,"No se encuentraningun inmueble con ese id");
             }
-                
+            if(con!=null){
+            if(!fech.isAfter(con.getFechaFinal())){
+                JOptionPane.showMessageDialog(this,"inmueble alquilado.");
+            }
+            }
         }catch(Exception ex){
             JOptionPane.showMessageDialog(this,"ERROR al intentar traer inmueble por id:"+ ex);
         }
