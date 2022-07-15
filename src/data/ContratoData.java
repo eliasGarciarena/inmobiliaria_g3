@@ -3,8 +3,13 @@
  */
 package data;
 
+import data.Conexion;
+import data.InmuebleData;
+import data.InquilinoData;
+import data.PropietarioData;
 import entities.Contrato_inmueble;
 import entities.Inmueble;
+import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -29,7 +34,6 @@ public class ContratoData {
         conn=conexion.getConexion();
         inquidata=new InquilinoData(conexion);
         inmudata=new InmuebleData(conexion);
-        pd=new PropietarioData(conexion);
     }
     
     
@@ -154,7 +158,7 @@ public class ContratoData {
                 JOptionPane.showMessageDialog(null, "El contrato fue modificado con exito.");
             }
             ps.close();
-        }catch(Exception ex){
+        }catch(HeadlessException | SQLException ex){
             JOptionPane.showMessageDialog(null,"ERROR al modificar el contrato:"+ ex);
         }
         return modific;
@@ -170,13 +174,13 @@ public class ContratoData {
                 borra=true;
                 JOptionPane.showMessageDialog(null, "Se ha borrado con exito el contrato.");
             }
-        }catch(Exception ex){
+        }catch(HeadlessException | SQLException ex){
             JOptionPane.showMessageDialog(null,"ERROR al intentar borrar el contrato"+ ex);
         }
         return borra;
     }
     public ArrayList<Inmueble> InmueblesAlquilados(){
-        ArrayList<Inmueble> inmuebles=null;
+        ArrayList<Inmueble> inmuebles=new ArrayList<>();
         try{
             String sql="SELECT inmueble.* FROM contrato_inmueble , inmueble WHERE inmueble.id_inmueble=contrato_inmueble.id_inmueble AND inmueble.activo = 1 AND contrato_inmueble.fecha_final>?";
             LocalDate fech= LocalDate.now();
@@ -195,9 +199,8 @@ public class ContratoData {
                 inmu.setPrecio(rs.getDouble("precio"));
                 inmu.setSuperficie(rs.getDouble("superficie"));
                 inmu.setActivo(rs.getBoolean("Activo"));
-                inmuebles.add(inmu);
             }
-        }catch(Exception ex){
+        }catch(SQLException ex){
             JOptionPane.showMessageDialog(null,"ERROR al traer los inmuebles alquilados al dia:"+ ex);
         }
         return inmuebles;
@@ -205,9 +208,7 @@ public class ContratoData {
     public ArrayList<Inmueble> InmueblesNoAlquilados(){
         ArrayList<Inmueble> inmuebles= new ArrayList<>();
         try{
-            String sql="SELECT inmueble.* FROM inmueble WHERE \n" +
-            "inmueble.activo=1 AND inmueble.id_inmueble NOT IN\n" +
-            "(SELECT inmueble.id_inmueble FROM contrato_inmueble , inmueble WHERE inmueble.id_inmueble=contrato_inmueble.id_inmueble AND inmueble.activo = 1 AND contrato_inmueble.fecha_final>?)";
+            String sql="SELECT inmueble.* FROM contrato_inmueble, inmueble WHERE inmueble.activo = 1 AND inmueble.id_inmueble NOT IN( SELECT inmueble.id_inmueble FROM contrato_inmueble, inmueble WHERE inmueble.id_inmueble = contrato_inmueble.id_inmueble AND inmueble.activo = 1 AND contrato_inmueble.fecha_final >?)";
             LocalDate fech= LocalDate.now();
             PreparedStatement ps=conn.prepareStatement(sql);
             ps.setDate(1, Date.valueOf(fech));
@@ -223,19 +224,18 @@ public class ContratoData {
                 inmu.setTipoInmueble(rs.getString("tipo_inmueble"));
                 inmu.setPrecio(rs.getDouble("precio"));
                 inmu.setSuperficie(rs.getDouble("superficie"));
-                inmu.setActivo(rs.getBoolean("Activo"));
-                inmuebles.add(inmu);
+                inmu.setActivo(rs.getBoolean("activo"));
             }
-        }catch(Exception ex){
+        }catch(SQLException ex){
             JOptionPane.showMessageDialog(null,"ERROR al traer los inmuebles No alquilados:"+ ex);
         }
         return inmuebles;
     }
     
-    public ArrayList<Inmueble> obtenerInmueblesAlquiladosXPropietario(Integer id_propietario) {
+    public ArrayList<Inmueble> obtenerInmueblesAlquiladosXPropietario(int id_propietario) {
         ArrayList<Inmueble> inmuebleList = new ArrayList<>();
         try {
-            String sql="SELECT inmueble.* FROM contrato , inmueble WHERE inmueble.idInmueble=contrato.idInmueble AND inmueble.activo = 1 AND inmueble.id_propietario=? AND contrato.finalizacion>?";
+            String sql="SELECT inmueble.* FROM contrato_inmueble , inmueble WHERE inmueble.id_inmueble=contrato_inmueble.id_inmueble AND inmueble.activo = ? AND inmueble.id_propietario=1 AND contrato_inmueble.fecha_final>?";
             LocalDate fech= LocalDate.now();
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, id_propietario);
@@ -263,12 +263,10 @@ public class ContratoData {
         return inmuebleList;
     }
 
-    public ArrayList<Inmueble> obtenerInmueblesLibresXPropietario(Integer id_propietario) {
+    public ArrayList<Inmueble> obtenerInmueblesLibresXPropietario(int id_propietario) {
         ArrayList<Inmueble> inmuebleList = new ArrayList<>();
         try {
-            String sql="SELECT inmueble.* FROM contrato , inmueble WHERE \n" +
-            "inmueble.activo=1 AND inmueble.id_propietario=? AND inmueble.idInmueble NOT IN\n" +
-            "(SELECT inmueble.idInmueble FROM contrato , inmueble WHERE inmueble.idInmueble=contrato.idInmueble AND inmueble.activo = 1 AND contrato.finalizacion>?)";
+            String sql="SELECT inmueble.* FROM contrato_inmueble, inmueble WHERE inmueble.activo = 1 AND inmueble.id_propietario = ? AND inmueble.id_inmueble NOT IN( SELECT inmueble.id_inmueble FROM contrato_inmueble, inmueble WHERE inmueble.id_inmueble = contrato_inmueble.id_inmueble AND inmueble.activo = 1 AND contrato_inmueble.fecha_final >?)";
             LocalDate fech= LocalDate.now();
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, id_propietario);
